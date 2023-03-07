@@ -27,7 +27,6 @@
 }
 
        
-
 public function detalle_cupon($id){
     $sql = "SELECT * FROM cuponr WHERE IdCuponR = ?";
     $stmt = $this->db->prepare($sql);
