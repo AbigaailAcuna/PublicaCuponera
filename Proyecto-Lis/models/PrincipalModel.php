@@ -1,6 +1,6 @@
 <?php
 //modelo de la principal
-    class Principal_modelo{
+     class Principal_modelo{
         private $db;
         private $cupones;
 
@@ -34,25 +34,9 @@
       
     }
     
-    //productos seleccionados para carrito
-    public function carrito_cupones($id=null){
-        $sql = "SELECT * FROM cuponr WHERE IdCuponR='$id' ";
-        $resultado = $this->db->query($sql);
-        $row=$resultado->fetch_assoc();
+    
 
-        return $row;
-    }
-
-    //detalle de productos
-   // public function detalle_cupon($id){
-     //   $sql = "SELECT IdCuponR,Titulo,PrecioRegular,imagen FROM cuponr WHERE IdCuponR='$id' LIMIT 1";
-       // $resultado = $this->db->query($sql);
-        //while($row = $resultado->fetch_assoc())
-        //{
-          //  $this->cupones[] = $row;
-        //}
-        //return $this->cupones;
-    //}
+    
 }
 
 ?>

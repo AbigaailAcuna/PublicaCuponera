@@ -117,10 +117,13 @@ else{
                         </div>
                         <?php
                         $suma=0;
-                        for($i=0;$i<count($arreglocarrito);$i++){
-                        $subtotal= $arreglocarrito[$i]['Precio']*$arreglocarrito[$i]['Cantidad'];
-                        $suma=$suma+$subtotal;
-                        }
+                        //Controlando la excepción
+                        if($arreglocarrito>0){
+                            for($i=0;$i<count($arreglocarrito);$i++){
+                                $subtotal= $arreglocarrito[$i]['Precio']*$arreglocarrito[$i]['Cantidad'];
+                                $suma=$suma+$subtotal;
+                                }
+                        } 
                       ?>
                       <h5>Precio Total: </h5>
                       <?php echo '$'. number_format($suma,2)?>
