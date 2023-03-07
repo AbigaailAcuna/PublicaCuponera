@@ -13,26 +13,32 @@
         }
 
         //método para mostrar los productos
-        public function mostrar_cupones(){
-            $sql = "SELECT IdCuponR,Titulo,PrecioRegular,imagen FROM cuponr ";
-            $resultado = $this->db->query($sql);
-			while($row = $resultado->fetch_assoc())
-			{
-				$this->cupones[] = $row;
-			}
-			return $this->cupones;
-          
-        }
+    public function mostrar_cupones(){
+    $sql = "SELECT IdCuponR, Titulo, PrecioRegular, imagen FROM cuponr";
+    $stmt = $this->db->prepare($sql);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    while($row = $resultado->fetch_assoc()){
+        $this->cupones[] = $row;
+    }
+
+    return $this->cupones;
+}
+
        
 
-    public function detalle_cupon($id){
-        $sql = "SELECT * FROM cuponr WHERE IdCuponR='$id' ";
-        $resultado = $this->db->query($sql);
-        $row=$resultado->fetch_assoc();
+public function detalle_cupon($id){
+    $sql = "SELECT * FROM cuponr WHERE IdCuponR = ?";
+    $stmt = $this->db->prepare($sql);
+    $stmt->bind_param("i", $id);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+    $row = $resultado->fetch_assoc();
 
-        return $row;
-      
-    }
+    return $row;
+}
+
     
     
 
