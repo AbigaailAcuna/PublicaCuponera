@@ -42,6 +42,12 @@ class PrincipalController{
         //require_once "views/cliente/Carrito.php";
         require_once "views/cliente/Borrar.php";
     }
+    public function sumar(){
+        require_once "views/cliente/Cantidad.php";
+    }
+    public function restar(){
+        require_once "views/cliente/Cantidad.php";
+    }
   
 
 }

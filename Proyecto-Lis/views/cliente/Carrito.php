@@ -1,52 +1,5 @@
 <?php
 include ('views/layouts/header.php');
-error_reporting(E_ERROR | E_PARSE);
-session_start();
-if(isset($_SESSION['carrito'])){
-    if($_GET['id']){
-        $arreglo=$_SESSION['carrito'];
-        $encontro=false;
-        $numero=0;
-        for($i=0;$i<count($arreglo);$i++){
-            if($arreglo[$i]['Id']==$_GET['id']){
-                $encontro=true;
-                $numero=$i;
-            }
-        }
-        if($encontro==true){
-            $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-            $_SESSION['carrito']=$arreglo;
-        }else{
-            $nombre= $info["cupones"]["Titulo"];
-            $precio=$info["cupones"]["PrecioRegular"];
-            $imagen= $info["cupones"]["imagen"];
-            $arreglonuevo=array(
-                'Id'=>$_GET['id'],
-                'Nombre'=>$nombre,
-                'Precio'=>$precio,
-                'Imagen'=>$imagen,
-                'Cantidad'=>1
-            );
-            array_push($arreglo, $arreglonuevo);
-            $_SESSION['carrito']=$arreglo;
-        }
-    }
-}
-else{
-    if(isset($_GET['id'])){
-        $nombre= $info["cupones"]["Titulo"];
-        $precio=$info["cupones"]["PrecioRegular"];
-        $imagen= $info["cupones"]["imagen"];
-        $arreglo[]=array(
-            'Id'=>$_GET['id'],
-            'Nombre'=>$nombre,
-            'Precio'=>$precio,
-            'Imagen'=>$imagen,
-            'Cantidad'=>1
-        );
-        $_SESSION['carrito']=$arreglo;
-    }
-}
 ?>
 <div class="container my-5">
     <div class="row">
@@ -84,30 +37,29 @@ else{
                                             <span><?php echo $arreglocarrito[$i]['Nombre']?></span>
                                         </div>
 
-                                        <div class="col-sm-2 align-self-center">
+                                        <div class="col-sm-2 align-self-ceter">
                                             <span>$<?php echo  $arreglocarrito[$i]['Precio']?></span>
                                         </div>
       
                                         <div class="col-sm-2 align-self-center">
                                             <div class="d-flex">
-                                                <button class="btn btn-outline-secondary btn-restar rounded-0"><i class="bi bi-dash"></i></button>
+                                                <button class="btn btn-outline-secondary btn-restar rounded-0" onclick="location.href='?c=Principal&a=restar';"><i class="bi bi-dash"></i></button>
                                                 <input class="form-control input-cantidad p-1 text-center rounded-0" disabled style="width:40px" value="<?php echo $arreglocarrito[$i]['Cantidad']?>"/>  
-                                                <button class="btn btn-outline-secondary btn-sumar rounded-0"><i class="bi bi-plus"></i></button>
+                                                <button class="btn btn-outline-secondary btn-sumar rounded-0" onclick="location.href='?c=Principal&a=sumar';"><i class="bi bi-plus"></i></button>
                                             </div>
                                             
                                             
                                         </div>
-
-                                        <div class="col-sm-2 align-self-center">
-                                            <button class="btn btn-outline-danger btn-eliminar" onclick="location.href='?c=Principal&a=borrar';"><i class="bi bi-trash"></i>Eliminar</button>
-
-                                        </div>
-
-                                        
+                                          <div class="col-sm-2 align-self-center">                          
+                                          <a href="?c=Principal&a=borrar&id=<?php echo $arreglocarrito[$i]['Id'];?>" class="eliminar">Eliminar</a>
+                                          <!-- <a href="?c=Principal&a=borrar&id=" class="btn btn-danger btn-sm btnEliminar" data-id=""><i class="bi bi-trash"></i></a>-->
+                                          </div>        
+                                          
+                                           
                                     </div>
                                 </div>
                                 
-                                <?php
+                                <?php          
                                     }
                                     }
                                     ?>
@@ -117,13 +69,14 @@ else{
                         </div>
                         <?php
                         $suma=0;
-                        //Controlando la excepción
-                        if(($arreglocarrito)>0){
+                        if($arreglocarrito>0){
                             for($i=0;$i<count($arreglocarrito);$i++){
                                 $subtotal= $arreglocarrito[$i]['Precio']*$arreglocarrito[$i]['Cantidad'];
                                 $suma=$suma+$subtotal;
-                            }
+                                }
                         }
+                       // var_dump($arreglocarrito);
+                      
                        
                       ?>
                       <h5>Precio Total: </h5>
@@ -170,3 +123,4 @@ else{
         </div>
     </div>
 </div>
+                        
