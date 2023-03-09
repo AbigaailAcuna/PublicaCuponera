@@ -43,9 +43,9 @@ include ('views/layouts/header.php');
       
                                         <div class="col-sm-2 align-self-center">
                                             <div class="d-flex">
-                                                <button class="btn btn-outline-secondary btn-restar rounded-0" onclick="location.href='?c=Principal&a=restar';"><i class="bi bi-dash"></i></button>
+                                                 <a class="btn btn-outline-secondary btn-restar rounded-0" href="?c=Principal&a=restar&id=<?php echo $arreglocarrito[$i]['Id'];?>"><i class="bi bi-dash"></i></a>
                                                 <input class="form-control input-cantidad p-1 text-center rounded-0" disabled style="width:40px" value="<?php echo $arreglocarrito[$i]['Cantidad']?>"/>  
-                                                <button class="btn btn-outline-secondary btn-sumar rounded-0" onclick="location.href='?c=Principal&a=sumar';"><i class="bi bi-plus"></i></button>
+                                                 <a class="btn btn-outline-secondary btn-sumar rounded-0" href="?c=Principal&a=sumar&id=<?php echo $arreglocarrito[$i]['Id'];?>"><i class="bi bi-plus"></i></a>
                                             </div>
                                             
                                             
