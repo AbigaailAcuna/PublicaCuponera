@@ -8,8 +8,8 @@ $arreglo=$_SESSION['carrito'];
         for($i=0;$i<count($arreglo);$i++){
             if($arreglo[$i]['Id']==$_GET['id']){
               $numero=$i;
-              //vamos eliminando decreciente
-              $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']-1;
+              //seteando la cantidad a cero
+              $arreglo[$numero]['Cantidad']=0;
               $_SESSION['carrito']=$arreglo;
 
               //lo eliminamos completamente
