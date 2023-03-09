@@ -1,4 +1,3 @@
 <?php
-    define("CONTROLADOR_PRINCIPAL","Principal");
-    define ( "ACCION_PRINCIPAL" , "index" );
-?>
+define("CONTROLADOR_PRINCIPAL", "Principal");
+define("ACCION_PRINCIPAL", "index");

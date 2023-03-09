@@ -28,6 +28,3 @@ if(isset($_GET['c'])){ //Verifica si existe el nombre del controlador
 //llamando al controlador
 //$control=new PrincipalController();
 //$control->index();
-
-
-?>
