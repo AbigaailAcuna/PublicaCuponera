@@ -35,6 +35,7 @@ class PrincipalController{
         $cupones=new Carrito_modelo();
         $info["id"]=$id;
         $info["cupones"]=$cupones->carrito_cupones($id);
+        require_once "views/cliente/Agregar.php";
        require_once "views/cliente/Carrito.php";     
           
     }

@@ -37,33 +37,33 @@ include('views/layouts/header.php');
                                                             <span><?php echo $arreglocarrito[$i]['Nombre'] ?></span>
                                                         </div>
 
-                                                        <div class="col-sm-2 align-self-ceter">
-                                                            <span>$<?php echo  $arreglocarrito[$i]['Precio'] ?></span>
-                                                        </div>
-
-                                                        <div class="col-sm-2 align-self-center">
-                                                            <div class="d-flex">
-                                                                <button class="btn btn-outline-secondary btn-restar rounded-0" onclick="location.href='?c=Principal&a=restar';"><i class="bi bi-dash"></i></button>
-                                                                <input class="form-control input-cantidad p-1 text-center rounded-0" disabled style="width:40px" value="<?php echo $arreglocarrito[$i]['Cantidad'] ?>" />
-                                                                <button class="btn btn-outline-secondary btn-sumar rounded-0" onclick="location.href='?c=Principal&a=sumar';"><i class="bi bi-plus"></i></button>
-                                                            </div>
-
-
-                                                        </div>
-                                                        <div class="col-sm-2 align-self-center">
-                                                            <a href="?c=Principal&a=borrar&id=<?php echo $arreglocarrito[$i]['Id']; ?>" class="eliminar">Eliminar</a>
-                                                            <!-- <a href="?c=Principal&a=borrar&id=" class="btn btn-danger btn-sm btnEliminar" data-id=""><i class="bi bi-trash"></i></a>-->
-                                                        </div>
-
-
-                                                    </div>
-                                                </div>
-
-                                        <?php
-                                            }
-                                        }
-                                        ?>
+                                        <div class="col-sm-2 align-self-center">
+                                            <span>$<?php echo  $arreglocarrito[$i]['Precio']?></span>
+                                        </div>
+      
+                                        <div class="col-sm-2 align-self-center">
+                                            <div class="d-flex">
+                                                <button class="btn btn-outline-secondary btn-restar rounded-0" onclick="location.href='?c=Principal&a=restar';"><i class="bi bi-dash"></i></button>
+                                                <input class="form-control input-cantidad p-1 text-center rounded-0" disabled style="width:40px" value="<?php echo $arreglocarrito[$i]['Cantidad']?>"/>  
+                                                <button class="btn btn-outline-secondary btn-sumar rounded-0" onclick="location.href='?c=Principal&a=sumar';"><i class="bi bi-plus"></i></button>
+                                            </div>
+                                            
+                                            
+                                        </div>
+                                          <div class="col-sm-2 align-self-center">                          
+                                          <a class="btn btn-outline-danger " href="?c=Principal&a=borrar&id=<?php echo $arreglocarrito[$i]['Id'];?>"><i class="bi bi-trash"></i></a>
+                                          <!-- <a href="?c=Principal&a=borrar&id=" class="btn btn-danger btn-sm btnEliminar" data-id=""><i class="bi bi-trash"></i></a>-->
+                                          </div>        
+                                          
+                                           
                                     </div>
+                                </div>
+                                
+                                <?php          
+                                    }
+                                    }
+                                    ?>
+                                </div>
 
                                 </div>
                             </div>
