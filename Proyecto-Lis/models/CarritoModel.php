@@ -1,6 +1,7 @@
 <?php
+include 'Model.php';
 
-    class Carrito_modelo {
+    class Carrito_modelo extends Modelo {
         private $db;
         private $cupones;
 
@@ -12,12 +13,9 @@
 
         }
     //productos seleccionados para carrito
-    public function carrito_cupones($id=null){
-    $sql = "SELECT * FROM cuponr WHERE IdCuponR='$id' ";
-    $resultado = $this->db->query($sql);
-    $row=$resultado->fetch_assoc();
-
-    return $row;
+        public function carrito_cupones($id){
+            $query = "SELECT * FROM cuponr WHERE IdCuponR = ?";
+             return $this->mostrar_seleccionado($query,$id);
         }
     }
 ?>

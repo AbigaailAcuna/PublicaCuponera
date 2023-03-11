@@ -1,6 +1,7 @@
 <?php
+include 'Model.php';
 //modelo de la principal
-     class Principal_modelo{
+     class Principal_modelo extends Modelo{
         private $db;
         private $cupones;
 
@@ -12,31 +13,17 @@
 
         }
 
-        //método para mostrar los productos
+     //método para mostrar los productos
     public function mostrar_cupones(){
-   $sql = "SELECT IdCuponR, Titulo, PrecioRegular, imagen FROM cuponr WHERE Estado = 'Activo'";
-    $stmt = $this->db->prepare($sql);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-
-    while($row = $resultado->fetch_assoc()){
-        $this->cupones[] = $row;
+        $query = "SELECT IdCuponR, Titulo, PrecioRegular, imagen FROM cuponr WHERE Estado = 'Activo'";
+        return $this->mostrar($query);
     }
 
-    return $this->cupones;
-}
-
        
-public function detalle_cupon($id){
-    $sql = "SELECT * FROM cuponr WHERE IdCuponR = ?";
-    $stmt = $this->db->prepare($sql);
-    $stmt->bind_param("i", $id);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-    $row = $resultado->fetch_assoc();
-
-    return $row;
-}
+    public function detalle_cupon($id){
+        $query = "SELECT * FROM cuponr WHERE IdCuponR = ?";
+        return $this->mostrar_seleccionado($query,$id);
+    }
 
     
     
