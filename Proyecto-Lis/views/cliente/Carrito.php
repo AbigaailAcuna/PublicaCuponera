@@ -93,7 +93,7 @@ include('views/layouts/header.php');
                                     include_once '../../helpers/validate.php';
                                     ?>
 
-                                    <form action="<?= $_SERVER['PHP_SELF']; ?>" method="POST">
+                                    <form action="<?= $_SERVER['PHP_SELF']. '?c=Principal&a=carrito' ?>" method="POST">
                                         <div class="mb-3">
                                             <label for="nombre" class="form-label">Nombre: </label>
                                             <div class="input-group">
