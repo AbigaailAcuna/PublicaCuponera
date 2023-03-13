@@ -4,11 +4,11 @@ class PrincipalController{
     
     public function index(){
         //traemos el modelo
-        require_once "models/PrincipalModel.php";
+        require_once "./models/CuponesModel.php";
         //instanciamos el modelo
-        $cupones=new Principal_modelo();
+        $cupones=new CuponesModel();
         //traemos el método del modelo
-        $info["cupones"]=$cupones->mostrar_cupones();
+        $info["cupones"]=$cupones->getCupones();
         require_once "views/cliente/Principal.php";
         
     }
@@ -25,16 +25,16 @@ class PrincipalController{
     public function detalle($id){
 
         require_once "models/PrincipalModel.php";
-        $cupones=new Principal_modelo();
+        $cupones=new CuponesModel();
         $info["id"]=$id;
-        $info["cupones"]=$cupones->detalle_cupon($id);
+        $info["cupones"]=$cupones->getCupon($id);
         require_once "views/cliente/Detalle.php";      
     }
      public function carrito($id=null){
-        require_once "models/CarritoModel.php";
-        $cupones=new Carrito_modelo();
+        require_once "models/CuponesModel.php";
+        $cupones=new CuponesModel();
         $info["id"]=$id;
-        $info["cupones"]=$cupones->carrito_cupones($id);
+        $info["cupones"]=$cupones->getCupon($id);
         require_once "views/cliente/Agregar.php";
        require_once "views/cliente/Carrito.php";     
           

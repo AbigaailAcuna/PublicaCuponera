@@ -1,5 +1,4 @@
 <?php
-session_start();
 $arreglo=$_SESSION['carrito'];
 
     if(isset($_SESSION['carrito'])){

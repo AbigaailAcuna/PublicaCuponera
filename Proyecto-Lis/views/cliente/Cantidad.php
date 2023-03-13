@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 //vemos qué acción hay que ejecutar
 if(isset($_SESSION['carrito'])){
@@ -13,7 +12,6 @@ if(isset($_SESSION['carrito'])){
                 $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
                 $_SESSION['carrito']=$arreglo;
             }
-            header('Location:?c=Principal&a=carrito');
             }
    
          }
@@ -29,11 +27,9 @@ if(isset($_SESSION['carrito'])){
                 }
                 $_SESSION['carrito']=$arreglo;
             }
-            header('Location:?c=Principal&a=carrito');
             }
    
          }
+            header('Location:?c=Principal&a=carrito');
     }
 }
-
-?>
