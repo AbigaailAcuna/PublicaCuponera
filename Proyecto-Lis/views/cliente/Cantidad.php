@@ -21,7 +21,12 @@ if(isset($_SESSION['carrito'])){
             for($i=0;$i<count($arreglo);$i++){
                 if($arreglo[$i]['Id']==$_GET['id']){
                 $numero=$i;
-                $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']-1;
+                if($arreglo[$numero]['Cantidad'] > 1) {
+                    $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']-1;
+                }
+                else {
+                    unset($arreglo[$numero]);
+                }
                 $_SESSION['carrito']=$arreglo;
             }
             header('Location:?c=Principal&a=carrito');

@@ -23,7 +23,7 @@ include ('views/layouts/header.php');
                     <div class="col mb-5">
                         <div class="card h-100">
                             <!-- Product image-->
-                            <img src="<?php echo 'http://localhost/Proyecto-Lis/recursos/img/'. $dato["imagen"]?>" class="card-img-top"  alt="imágenes de cupones" width="40px"/>
+                            <img src="<?php echo './recursos/img/'. $dato["imagen"]?>" class="card-img-top"  alt="imágenes de cupones" width="40px"/>
                             <!-- Product details-->
                             <div class="card-body p-4">
                                 <div class="text-center">
