@@ -29,7 +29,7 @@ include ('views/layouts/header.php');
 
                                         <div class="col-sm-2 align-self-center d-flex justify-content-center">
                                             <!--imagen-->
-                                            <img class="rounded" src="<?php echo 'http://localhost/Proyecto-Lis/recursos/img/'.$arreglocarrito[$i]['Imagen']?>" style="width:100px;height:100px"/>
+                                            <img class="rounded" src="<?php echo './recursos/img/'.$arreglocarrito[$i]['Imagen']?>" style="width:100px;height:100px"/>
                                         </div>
 
                                         <div class="col-sm-4 align-self-center">
