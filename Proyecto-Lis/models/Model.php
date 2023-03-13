@@ -1,5 +1,5 @@
 <?php
- abstract class Modelo{
+ abstract class Model{
     private $db;
     private $cupones;
 
@@ -12,7 +12,7 @@
     }
 
     //métodos generales
-    protected function mostrar($query){
+    protected function get($query){
         try{    
             //abrimos conexión
             $this->db=Conectar::conexion();
@@ -32,7 +32,7 @@
         }   
     }
 
-    protected function mostrar_seleccionado($query,$id){
+    protected function getOne($query,$id){
         try{
             //abrimos conexión
             $this->db=Conectar::conexion();
@@ -53,6 +53,3 @@
 
     
  }
-
-
-?>

@@ -1,5 +1,4 @@
 <?php
-session_start();
 error_reporting(E_ERROR | E_PARSE);
 if (isset($_SESSION['carrito'])) {
     if ($_GET['id']) {
@@ -19,11 +18,14 @@ if (isset($_SESSION['carrito'])) {
             $nombre = $info["cupones"]["Titulo"];
             $precio = $info["cupones"]["PrecioRegular"];
             $imagen = $info["cupones"]["imagen"];
+            $idEmpresa = $info["cupones"]["IdEmpresaR"];
+
             $arreglonuevo = array(
                 'Id' => $_GET['id'],
                 'Nombre' => $nombre,
                 'Precio' => $precio,
                 'Imagen' => $imagen,
+                'IdEmpresa' => $idEmpresa,
                 'Cantidad' => 1
             );
             array_push($arreglo, $arreglonuevo);
@@ -35,11 +37,14 @@ if (isset($_SESSION['carrito'])) {
     $nombre = $info["cupones"]["Titulo"];
     $precio = $info["cupones"]["PrecioRegular"];
     $imagen = $info["cupones"]["imagen"];
+    $idEmpresa = $info["cupones"]["IdEmpresaR"];
+
     $arreglo[] = array(
         'Id' => $_GET['id'],
         'Nombre' => $nombre,
         'Precio' => $precio,
         'Imagen' => $imagen,
+        'IdEmpresa' => $idEmpresa,
         'Cantidad' => 1
     );
     $_SESSION['carrito'] = $arreglo;

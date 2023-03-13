@@ -1,5 +1,4 @@
 <!--Template general, de esta van a heredar las otras-->
-<?php session_start(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,6 +15,7 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
     <!-- Core theme CSS (includes Bootstrap)-->
     <link href="./recursos/css/header.css" rel="stylesheet" />
+    <link href="./recursos/css/pago.css" rel="stylesheet" />
 </head>
 
 <body>

@@ -19,8 +19,18 @@ include('views/layouts/header.php');
                                     <div class="card mb-2 card-producto">
                                         <!--acá productos agregados-->
                                         <?php
-                                        if (isset($_SESSION['carrito'])) {
-                                            $arreglocarrito = $_SESSION['carrito'];
+                                        $validate = -1;
+                                        $arreglocarrito = $_SESSION['carrito'];
+                                        $errors = [];
+
+                                        if (isset($_POST['pagar'])) {
+                                            validateCreditCard($_POST['numTarjeta'], $validate, $errors);
+                                            validateText($_POST['nombre'], $validate, $errors, 'nombre');
+                                            validateText($_POST['apellido'], $validate, $errors, 'apellido');
+                                            validateCVV($_POST['cvv'], $validate, $errors);
+                                            validateDate($_POST['fechaExp'], $validate, $errors);
+                                        }
+                                        if (isset($_SESSION['carrito']) && count($_SESSION['carrito']) && $validate != 1) {
                                             for ($i = 0; $i < count($arreglocarrito); $i++) {
 
                                         ?>
@@ -80,80 +90,92 @@ include('views/layouts/header.php');
 
                             ?>
                             <h5>Precio Total: </h5>
-                            <?= '$' . number_format($suma, 2) ?>
+                            <?= '$' . ($validate != 1 ? number_format($suma, 2) :  number_format(0, 2)) ?>
                         </div>
                         <!--Pago-->
                         <div class="col-sm-3">
                             <div class="card">
-                                <div class="card-body bg-light">
+                                <div class="card-header">
                                     <h5 class="card-title">Datos de Pago</h5>
+                                </div>
+                                <div class="card-body">
                                     <?php
-                                    $errors = [];
-                                    $validate = -1;
+                                    if (isset($_SESSION['carrito']) && count($_SESSION['carrito'])) {
 
-                                    if (isset($_POST['pagar'])) {
-                                        validateCreditCard($_POST['numTarjeta'], $validate, $errors);
-                                        validateText($_POST['nombre'], $validate, $errors, 'nombre');
-                                        validateText($_POST['apellido'], $validate, $errors, 'apellido');
-                                        validateCVV($_POST['cvv'], $validate, $errors);
-                                        validateDate($_POST['fechaExp'], $validate, $errors);
-                                    }
+                                        if ($validate != 1) {
                                     ?>
 
-                                    <form action="<?= $_SERVER['PHP_SELF'] . '?c=Principal&a=carrito' ?>" method="POST">
-                                        <div class="mb-3">
-                                            <label for="nombre" class="form-label">Nombre: </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                                <input type="text" class="form-control form-control-sm" name="nombre" value="<?= $validate == -1 ? '' : $_POST["nombre"] ?>">
+                                            <form action="<?= $_SERVER['PHP_SELF'] . '?c=Principal&a=carrito' ?>" method="POST">
+                                                <div class="mb-3">
+                                                    <label for="nombre" class="form-label">Nombre: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                                        <input type="text" class="form-control form-control-sm" name="nombre" value="<?= $validate == -1 ? '' : $_POST["nombre"] ?>">
+                                                    </div>
+                                                    <?= $validate == 0 ? "<p class='text-danger'>" . $errors['nombre'] . "</p>" : "" ?>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="apellido" class="form-label">Apellido: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-person"></i></span>
+                                                        <input type="text" class="form-control form-control-sm" name="apellido" value="<?= $validate == -1 ? '' : $_POST["apellido"] ?>">
+                                                    </div>
+                                                    <?= $validate == 0 ? "<p class='text-danger'>" . $errors['apellido'] . "</p>" : "" ?>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="cnumero" class="form-label">Número de tarjeta: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
+                                                        <input type="text" class="form-control form-control-sm" name="numTarjeta" value="<?= $validate == -1 ? '' : $_POST["numTarjeta"] ?>" id="credit-num">
+                                                    </div>
+                                                    <?= $validate == 0 ? "<p class='text-danger'>" . $errors['numTarjeta'] . "</p>" : "" ?>
+                                                    <script src="./recursos/js/inputCreditCard.js"></script>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="fecha" class="form-label">Fecha Expiración: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
+                                                        <input type="month" class="form-control form-control-sm" name="fechaExp" value="<?= $validate == -1 ? '' : $_POST["fechaExp"] ?>">
+                                                    </div>
+                                                    <?= $validate == 0 ? "<p class='text-danger'>" . $errors['fechaExp'] . "</p>" : "" ?>
+                                                </div>
+
+                                                <div class="mb-3">
+                                                    <label for="cvv" class="form-label">CVV: </label>
+                                                    <div class="input-group">
+                                                        <span class="input-group-text"><i class="bi bi-credit-card-2-back"></i></span>
+                                                        <input type="text" class="form-control form-control-sm" name="cvv" value="<?= $validate == -1 ? '' : $_POST["cvv"] ?>">
+                                                    </div>
+                                                    <?= $validate == 0 ? "<p class='text-danger'>" . $errors['cvv'] . "</p>" : "" ?>
+                                                </div>
+
+                                                <div class="d-grid">
+                                                    <button class="btn btn-success" type="submit" name="pagar"><i class="bi bi-credit-card-2-front"> Procesar Pago</i></button>
+                                                </div>
+                                            </form>
+                                        <?php
+                                        } else {
+                                            require_once './helpers/createCuponSell.php';
+                                        ?>
+                                            <div class="pay-verify-container d-flex justify-content-center flex-column align-items-center">
+                                                <img src="./recursos/img/verify.gif" class="pay-verify-img">
+                                                <p class="text-success">Su pago se ha realizado con éxito</p>
+                                                <a href="./index.php?delete='carrito'" class="btn btn-primary">Aceptar</a>
                                             </div>
-                                            <?= $validate == 0 ? "<p class='text-danger'>" . $errors['nombre'] . "</p>" : "" ?>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="apellido" class="form-label">Apellido: </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-person"></i></span>
-                                                <input type="text" class="form-control form-control-sm" name="apellido" value="<?= $validate == -1 ? '' : $_POST["apellido"] ?>">
-                                            </div>
-                                            <?= $validate == 0 ? "<p class='text-danger'>" . $errors['apellido'] . "</p>" : "" ?>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="cnumero" class="form-label">Número de tarjeta: </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-credit-card"></i></span>
-                                                <input type="text" class="form-control form-control-sm" name="numTarjeta" value="<?= $validate == -1 ? '' : $_POST["numTarjeta"] ?>" id="credit-num">
-                                            </div>
-                                            <?= $validate == 0 ? "<p class='text-danger'>" . $errors['numTarjeta'] . "</p>" : "" ?>
-                                            <script src="./recursos/js/inputCreditCard.js"></script>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="fecha" class="form-label">Fecha Expiración: </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                                                <input type="month" class="form-control form-control-sm" name="fechaExp" value="<?= $validate == -1 ? '' : $_POST["fechaExp"] ?>">
-                                            </div>
-                                            <?= $validate == 0 ? "<p class='text-danger'>" . $errors['fechaExp'] . "</p>" : "" ?>
-                                        </div>
-
-                                        <div class="mb-3">
-                                            <label for="cvv" class="form-label">CVV: </label>
-                                            <div class="input-group">
-                                                <span class="input-group-text"><i class="bi bi-credit-card-2-back"></i></span>
-                                                <input type="text" class="form-control form-control-sm" name="cvv" value="<?= $validate == -1 ? '' : $_POST["cvv"] ?>">
-                                            </div>
-                                            <?= $validate == 0 ? "<p class='text-danger'>" . $errors['cvv'] . "</p>" : "" ?>
-                                        </div>
-
-                                        <div class="d-grid">
-                                            <button class="btn btn-success" type="submit" name="pagar"><i class="bi bi-credit-card-2-front"> Procesar Pago</i></button>
-                                        </div>
-                                    </form>
-
+                                        <?php
+                                        }
+                                        ?>
+                                    <?php
+                                    } else {
+                                    ?>
+                                        <h6 class="text-danger">Agregue productos al carrito antes de realizar su pago</h6>
+                                    <?php
+                                    }
+                                    ?>
                                 </div>
-
                             </div>
                         </div>
                     </div>

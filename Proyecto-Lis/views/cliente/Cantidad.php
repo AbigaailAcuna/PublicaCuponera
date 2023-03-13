@@ -1,5 +1,4 @@
 <?php
-session_start();
 
 //vemos qué acción hay que ejecutar
 if(isset($_SESSION['carrito'])){

@@ -1,4 +1,5 @@
 <?php
+session_start();
 
 require_once "./core/routes.php";
 require_once "./config/config.php";
@@ -6,29 +7,31 @@ require_once "./config/bd.php";
 require_once "./controllers/Principal.php";
 require_once './helpers/validate.php';
 
-if(isset($_GET['c'])){ //Verifica si existe el nombre del controlador
-		
+if (isset($_GET['c'])) { //Verifica si existe el nombre del controlador
+
     $controlador = cargarControlador($_GET['c']); //Carga el controlador Alumnos
-    
-    if(isset($_GET['a'])){ //Verifica si existe la acción
-        if(isset($_GET['id'])){ //Verifica si existe el id
+
+    if (isset($_GET['a'])) { //Verifica si existe la acción
+        if (isset($_GET['id'])) { //Verifica si existe el id
             cargarAccion($controlador, $_GET['a'], $_GET['id']); //Ejecuta acción que necesita el id
-            } else {
+        } else {
             cargarAccion($controlador, $_GET['a']); //Ejecuta acción
         }
-        } else {
+    } else {
         cargarAccion($controlador, ACCION_PRINCIPAL); //Cargar form predeterminado
     }
-    
-    } else {
-    
+} else {
+
     $controlador = cargarControlador(CONTROLADOR_PRINCIPAL);
     $accionTmp = ACCION_PRINCIPAL;
     $controlador->$accionTmp();
 }
+
+if (isset($_GET['delete'])) {
+    unset($_SESSION['carrito']);
+    var_dump($_SESSION);
+    header('Location:');
+}
 //llamando al controlador
 //$control=new PrincipalController();
 //$control->index();
-
-
-?>
