@@ -4,7 +4,7 @@
 
       public static function conexion(){
         try{
-          $conexion=new mysqli("localhost","root","123456","cuponeralis");
+          $conexion=new mysqli("localhost","root","","cuponeralis");
         }
        catch(Exception $e){
         echo 'Error de conexión';
