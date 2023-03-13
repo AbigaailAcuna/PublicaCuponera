@@ -90,10 +90,17 @@ include('views/layouts/header.php');
                                     <?php
                                     $errors = [];
                                     $validate = -1;
-                                    include_once '../../helpers/validate.php';
+
+                                    if (isset($_POST['pagar'])) {
+                                        validateCreditCard($_POST['numTarjeta'], $validate, $errors);
+                                        validateText($_POST['nombre'], $validate, $errors, 'nombre');
+                                        validateText($_POST['apellido'], $validate, $errors, 'apellido');
+                                        validateCVV($_POST['cvv'], $validate, $errors);
+                                        validateDate($_POST['fechaExp'], $validate, $errors);
+                                    }
                                     ?>
 
-                                    <form action="<?= $_SERVER['PHP_SELF']. '?c=Principal&a=carrito' ?>" method="POST">
+                                    <form action="<?= $_SERVER['PHP_SELF'] . '?c=Principal&a=carrito' ?>" method="POST">
                                         <div class="mb-3">
                                             <label for="nombre" class="form-label">Nombre: </label>
                                             <div class="input-group">
@@ -126,7 +133,7 @@ include('views/layouts/header.php');
                                             <label for="fecha" class="form-label">Fecha Expiración: </label>
                                             <div class="input-group">
                                                 <span class="input-group-text"><i class="bi bi-calendar-event"></i></span>
-                                                <input type="date" class="form-control form-control-sm" name="fechaExp" value="<?= $validate == -1 ? '' : $_POST["fechaExp"] ?>">
+                                                <input type="month" class="form-control form-control-sm" name="fechaExp" value="<?= $validate == -1 ? '' : $_POST["fechaExp"] ?>">
                                             </div>
                                             <?= $validate == 0 ? "<p class='text-danger'>" . $errors['fechaExp'] . "</p>" : "" ?>
                                         </div>
