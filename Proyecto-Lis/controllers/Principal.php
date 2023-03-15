@@ -24,7 +24,7 @@ class PrincipalController{
     //pagina para detalle de productos
     public function detalle($id){
 
-        require_once "models/PrincipalModel.php";
+        require_once "models/CuponesModel.php";
         $cupones=new CuponesModel();
         $info["id"]=$id;
         $info["cupones"]=$cupones->getCupon($id);

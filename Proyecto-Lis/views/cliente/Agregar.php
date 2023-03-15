@@ -19,6 +19,7 @@ if (isset($_SESSION['carrito'])) {
             $precio = $info["cupones"]["PrecioRegular"];
             $imagen = $info["cupones"]["imagen"];
             $idEmpresa = $info["cupones"]["IdEmpresaR"];
+            $disponibilidad=$info["cupones"]["Disponibilidad"];
 
             $arreglonuevo = array(
                 'Id' => $_GET['id'],
@@ -26,6 +27,7 @@ if (isset($_SESSION['carrito'])) {
                 'Precio' => $precio,
                 'Imagen' => $imagen,
                 'IdEmpresa' => $idEmpresa,
+                'Disponibilidad'=>$disponibilidad,
                 'Cantidad' => 1
             );
             array_push($arreglo, $arreglonuevo);
@@ -38,6 +40,7 @@ if (isset($_SESSION['carrito'])) {
     $precio = $info["cupones"]["PrecioRegular"];
     $imagen = $info["cupones"]["imagen"];
     $idEmpresa = $info["cupones"]["IdEmpresaR"];
+    $disponibilidad=$info["cupones"]["Disponibilidad"];
 
     $arreglo[] = array(
         'Id' => $_GET['id'],
@@ -45,6 +48,7 @@ if (isset($_SESSION['carrito'])) {
         'Precio' => $precio,
         'Imagen' => $imagen,
         'IdEmpresa' => $idEmpresa,
+        'Disponibilidad'=>$disponibilidad,
         'Cantidad' => 1
     );
     $_SESSION['carrito'] = $arreglo;

@@ -10,7 +10,14 @@ if(isset($_SESSION['carrito'])){
                 if($arreglo[$i]['Id']==$_GET['id']){
                 $numero=$i;
                 $arreglo[$numero]['Cantidad']=$arreglo[$numero]['Cantidad']+1;
-                $_SESSION['carrito']=$arreglo;
+                $dispo= $arreglo[$numero]['Disponibilidad'];
+                if($arreglo[$numero]['Cantidad']>$dispo)
+                {
+                  ///mensaje
+                }else{
+                    $_SESSION['carrito']=$arreglo;
+                }        
+              
             }
             }
    
