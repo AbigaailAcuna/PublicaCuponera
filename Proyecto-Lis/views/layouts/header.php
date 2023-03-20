@@ -32,7 +32,7 @@
                     </li>
                 </ul>
                 <div class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill"></i></a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill" style="font-size: 2rem; color: rgb(0, 0, 0);"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                         <li><a class="dropdown-item" href="?c=Principal&a=inicio">Iniciar Sesión</a></li>
                         <li><a class="dropdown-item" href="?c=Principal&a=registro">Registrarse</a></li>
