@@ -31,6 +31,7 @@
                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php">Inicio</a></li>
                     </li>
                 </ul>
+                <a  href="#exampleModalToggle" data-bs-toggle="modal" ><i class="bi bi-file-text" style="font-size: 2rem; color: rgb(0, 0, 0);"></i></a>
                 <div class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill" style="font-size: 2rem; color: rgb(0, 0, 0);"></i></a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -64,3 +65,6 @@
             </div>
         </div>
     </nav>
+
+
+

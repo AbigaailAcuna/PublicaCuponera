@@ -2,6 +2,7 @@
 
 //incluyendo el header
 include ('views/layouts/header.php');
+
 //error_reporting(E_ERROR | E_PARSE); 
 
 ?>

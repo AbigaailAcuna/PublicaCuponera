@@ -3,13 +3,17 @@
 class PrincipalController{
     
     public function index(){
-        //traemos el modelo
-        require_once "./models/CuponesModel.php";
-        //instanciamos el modelo
-        $cupones=new CuponesModel();
-        //traemos el método del modelo
-        $info["cupones"]=$cupones->getCupones();
-        require_once "views/cliente/Principal.php";
+       //traemos el modelo
+       require_once "./models/CuponesModel.php";
+       require_once "./models/Historialmodel.php";
+       //instanciamos el modelo
+       $cupones=new CuponesModel();
+       $historial=new HistorialModel();
+       //traemos el método del modelo
+       $info["cupones"]=$cupones->getCupones();
+       $info["historial"]=$historial->getCuponesV();
+
+       require_once "views/cliente/Principal.php";
         
     }
 
@@ -21,6 +25,10 @@ class PrincipalController{
     public function registro(){
         require_once "views/cliente/Registro.php";
     }
+
+   
+
+
     //pagina para detalle de productos
     public function detalle($id){
 
