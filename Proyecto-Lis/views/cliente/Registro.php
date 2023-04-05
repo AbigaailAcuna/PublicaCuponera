@@ -9,7 +9,7 @@
 </head>
 <body>
   <div class="vid-container">
-    <form method="POST" action="controllers/userRegistro.php">
+    <form method="POST" action="?c=Usuario&a=registrar">
       <div class="box">
         <h1>Registro</h1>
         <input type="text" name="nombres" id="nombres" placeholder="Nombres" required />
@@ -21,7 +21,7 @@
         <input type="password" name="password" id="password" placeholder="Contraseña" required/>
         <button name="signup" id="signup" >Registrarse</button>
         <p>¿Ya posees una cuenta?</p> 
-        <p><a href="http://localhost/Proyecto-Lis/views/cliente/InicioSesion.php">Iniciar Sesión</a><p>
+        <p><a href="?c=Principal&a=inicio">Iniciar Sesión</a><p>
         <?php 
         //mensaje de error ?>
       </div>

@@ -1,4 +1,6 @@
 <!--Template general, de esta van a heredar las otras-->
+<?php //session_start();
+error_reporting(E_ERROR|E_PARSE);?>
 
 <!DOCTYPE html>
 <html lang="en">

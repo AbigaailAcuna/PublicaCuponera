@@ -1,6 +1,6 @@
 <?php
 
-include_once ("../config/bd.php");
+include_once ("./config/bd.php");
 
 class UsuarioModel {
     private $db;

@@ -8,7 +8,7 @@
     <link href="http://localhost/Proyecto-Lis/recursos/css/log.css" rel="stylesheet" />
 </head>
 <body>
-  <form action="../../controllers/Validar.php" method="POST" >
+  <form action="?c=Usuario&a=validarRegistro" method="POST" >
     <div class="vid-container">
       <div class="box">
         <h1>Validar Token</h1>

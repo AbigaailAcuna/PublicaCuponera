@@ -8,7 +8,7 @@
     <link href="http://localhost/Proyecto-Lis/recursos/css/log.css" rel="stylesheet" />
 </head>
 <body>
-  <form action="controllers/userInicioSesion.php" method="POST" >
+  <form action="?c=Usuario&a=validar" method="POST" >
     <div class="vid-container">
       <div class="box">
         <h1>Inicio de Sesión</h1>
@@ -18,9 +18,9 @@
         <button name="login" id="login">Iniciar Sesión</button>
         
         <p>¿No posees una cuenta?</p>
-        <p><a href="http://localhost/Proyecto-Lis/views/cliente/Registro.php">Registrarse</a><p>
+        <p><a href="?c=Principal&a=registro">Registrarse</a><p>
         <p>¿Quieres cambiar tu Contraseña?</p>
-        <p><a href="http://localhost/Proyecto-Lis/views/cliente/Registro.php">Cambiar contraseña</a><p>
+        <p><a href="?c=Principal&a=registro">Cambiar contraseña</a><p>
         
         <?php //include_once('../../controllers/userInicioSesion.php'); ?>
       </div>
