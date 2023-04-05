@@ -38,27 +38,12 @@ class PrincipalController{
         $info["cupones"]=$cupones->getCupon($id);
         require_once "views/cliente/Detalle.php";      
     }
-     public function carrito($id=null){
-        require_once "models/CuponesModel.php";
-        $cupones=new CuponesModel();
-        $info["id"]=$id;
-        $info["cupones"]=$cupones->getCupon($id);
-        require_once "views/cliente/Agregar.php";
+     public function carrito(){
+      
        require_once "views/cliente/Carrito.php";     
           
     }
-    public function borrar($id=null){
-        //require_once "views/cliente/Carrito.php";
-        require_once "views/cliente/Borrar.php";
-    }
-    public function sumar(){
-        require_once "views/cliente/Cantidad.php";
-    }
-    public function restar(){
-        require_once "views/cliente/Cantidad.php";
-    }
-  
-
+   
 }
 
 ?>
