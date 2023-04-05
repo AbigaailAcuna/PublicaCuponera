@@ -23,10 +23,10 @@ class VentasModel
 
       public function updateCant($id, $cantVendidos)
       {
-            $sql = "UPDATE cuponr SET Disponibilidad = Disponibilidad - ?
+            $sql = "UPDATE cuponr SET Disponibilidad = Disponibilidad - ?, CantidadVendido = ?
                   WHERE IdCuponR = ?";
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param('ss', $id, $cantVendidos);
+            $stmt->bind_param('sss', $cantVendidos, $cantVendidos, $id);
             return $stmt->execute();
       }
 }

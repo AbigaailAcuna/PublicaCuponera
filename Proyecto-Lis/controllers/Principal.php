@@ -55,10 +55,6 @@ class PrincipalController
                   validateText($apellido, $validate, $errors, 'apellido');
                   validateCVV($cvv, $validate, $errors);
                   validateDate($fechaExp, $validate, $errors);
-
-                  if ($validate == 1) {
-                        header('location:?c=Ventas&a=insertSale');
-                  }
             }
             require_once "views/cliente/Carrito.php";
       }

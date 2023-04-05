@@ -152,7 +152,7 @@ require_once('./views/layouts/header.php');
                                                                   <div class="pay-verify-container d-flex justify-content-center flex-column align-items-center">
                                                                         <img src="./recursos/img/verify.gif" class="pay-verify-img">
                                                                         <p class="text-success">Su pago se ha realizado con éxito</p>
-                                                                        <a href="./index.php?delete='carrito'" class="btn btn-primary">Aceptar</a>
+                                                                        <a href="./index.php?c=Ventas&a=insertSale" class="btn btn-primary">Aceptar</a>
                                                                   </div>
                                                             <?php
                                                             }
