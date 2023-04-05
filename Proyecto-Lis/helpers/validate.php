@@ -17,8 +17,7 @@ function validateCreditCard($cardNumber, &$validate, &$errors)
 
       $sum = 0;
       $array = str_split($cardNumber);
-
-      for ($i = 0; $i < 18; $i++) {
+      for ($i = 0; $i < 16; $i++) {
             if ($i % 2) {
                   $sum += $array[$i];
             } else {
@@ -87,8 +86,7 @@ function validateDate($date, &$validate, &$errors)
                   $validate = 0;
                   $errors['fechaExp'] = 'La fecha no es válida';
                   return;
-            } 
-            
+            }
       }
 
       $validate = $validate == 0 ? 0 : 1;
