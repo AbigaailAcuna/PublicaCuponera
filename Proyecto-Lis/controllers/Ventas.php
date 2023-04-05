@@ -15,7 +15,7 @@ class VentasController
                               $cuponVendido = [
                                     'IdVenta' => $idVenta,
                                     'IdCupon' => $cupon['Id'],
-                                    'IdCliente' => 'karletty.carolina@gmail.com',
+                                    'IdCliente' => $_SESSION['user'],
                                     'Estado' => 'disponible'
                               ];
 
