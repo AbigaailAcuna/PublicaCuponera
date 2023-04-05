@@ -37,7 +37,7 @@
             //abrimos conexión
             $this->db=Conectar::conexion();
             $sql=$this->db->prepare($query);
-            $sql->bind_param('i', $id);
+            $sql->bind_param('s', $id);
             $sql->execute();
             $resultado = $sql->get_result();
             $row = $resultado->fetch_assoc();

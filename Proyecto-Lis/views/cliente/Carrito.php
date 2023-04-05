@@ -54,15 +54,15 @@ include('views/layouts/header.php');
 
                                                         <div class="col-sm-2 align-self-center">
                                                             <div class="d-flex">
-                                                                <a class="btn btn-outline-secondary btn-restar rounded-0" href="?c=Principal&a=restar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-dash"></i></a>
+                                                                <a class="btn btn-outline-secondary btn-restar rounded-0" href="?c=Carrito&a=restar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-dash"></i></a>
                                                                 <input class="form-control input-cantidad p-1 text-center rounded-0" disabled style="width:40px" value="<?php echo $arreglocarrito[$i]['Cantidad'] ?>" />
-                                                                <a class="btn btn-outline-secondary btn-sumar rounded-0" href="?c=Principal&a=sumar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-plus"></i></a>
+                                                                <a class="btn btn-outline-secondary btn-sumar rounded-0" href="?c=Carrito&a=sumar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-plus"></i></a>
                                                             </div>
 
 
                                                         </div>
                                                         <div class="col-sm-2 align-self-center">
-                                                            <a class="btn btn-outline-danger " href="?c=Principal&a=borrar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-trash"></i></a>
+                                                            <a class="btn btn-outline-danger " href="?c=Carrito&a=borrar&id=<?php echo $arreglocarrito[$i]['Id']; ?>"><i class="bi bi-trash"></i></a>
                                                             <!-- <a href="?c=Principal&a=borrar&id=" class="btn btn-danger btn-sm btnEliminar" data-id=""><i class="bi bi-trash"></i></a>-->
                                                         </div>
 

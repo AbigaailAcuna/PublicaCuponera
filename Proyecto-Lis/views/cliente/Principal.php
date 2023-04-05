@@ -105,7 +105,7 @@ include ('views/layouts/header.php');
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
                                 <div class="text-center">
                                 <a class="btn btn-dark mt-auto" href="?c=Principal&a=detalle&id=<?php echo $dato["IdCuponR"]?>"><i class="bi bi-eyeglasses"></i></a>
-                                <a class="btn btn-success mt-auto" href="?c=Principal&a=carrito&id=<?php echo $dato["IdCuponR"]?>"><i class="bi bi-cart"></i></a>
+                                <a class="btn btn-success mt-auto" href="?c=Carrito&a=agregar&id=<?php echo $dato["IdCuponR"]?>"><i class="bi bi-cart"></i></a>
                               
                             </div>
                                 
