@@ -23,15 +23,28 @@ class UsuarioModel extends Model{
         return ($result->num_rows > 0);
     }
 
-    public function getUser($email, $password){
-        $sql = "SELECT * FROM cliente WHERE Correo='$email' AND Clave = SHA2('$password',256) and estado='Activo'";
-        return $this->get($sql,['Correo'=>$email, 'Clave'=>$password]);
+    public function getUser($correo, $password){
+        $sql = "SELECT * FROM cliente WHERE Correo='$correo' AND Clave = SHA2('$password',256) and Estado='Activo'";
+        return $this->get($sql,['Correo'=>$correo, 'Clave'=>$password]);
+    }
+
+    public function getUserpass($correo, $password){
+        $sql = "SELECT * FROM cliente WHERE Correo='$correo' AND Clave = SHA2('$password',256) AND Estado='Activo'";
+        $result = $this->db->query($sql);
+        return ($result->num_rows > 0);
     }
 
     public function getToken($correo, $token){
         $sql = "SELECT * FROM cliente WHERE Correo='$correo' AND Token = '$token'";
         $result = $this->db->query($sql);
         return ($result->num_rows > 0);
+    }
+
+    public function CambiarClave($correo, $password){
+        $stmt = $this->db->prepare("UPDATE cliente SET Clave = SHA2('$password',256) WHERE correo='$correo'");
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
 
     public function CambiarEstado($correo, $token){
