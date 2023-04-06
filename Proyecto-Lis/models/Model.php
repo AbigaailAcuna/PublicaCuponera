@@ -14,6 +14,7 @@
     //métodos generales
     protected function get($query){
         try{    
+            unset($this->cupones);
             //abrimos conexión
             $this->db=Conectar::conexion();
             $st=$this->db->prepare($query);

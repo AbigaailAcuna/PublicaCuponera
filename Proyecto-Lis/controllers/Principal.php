@@ -13,8 +13,12 @@ class PrincipalController
             $historial = new HistorialModel();
             //traemos el método del modelo
             $info["cupones"] = $cupones->getCupones();
-            $info["historial"] = $historial->getCuponesV();
-
+            if(isset($_SESSION['login_data'])){
+            $info["historial"]['Canjeados'] = $historial->getCuponesCanjeados($_SESSION['login_data']['IdCliente']);
+            $info["historial"]['Vencidos'] = $historial->getCuponesVencidos($_SESSION['login_data']['IdCliente']);
+            $info["historial"]['Disponibles'] = $historial->getCuponesDisponibles($_SESSION['login_data']['IdCliente']);
+            }
+           
             require_once "views/cliente/Principal.php";
       }
 
