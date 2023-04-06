@@ -32,6 +32,11 @@ class PrincipalController
       {
             require_once "views/cliente/Registro.php";
       }
+      //mostrando pagina de cambio de contraseña
+      public function cambiarClave()
+      {
+            require_once "views/cliente/CambioClave.php";
+      }
 
 
 
