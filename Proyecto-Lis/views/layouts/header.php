@@ -40,10 +40,13 @@ error_reporting(E_ERROR|E_PARSE);?>
                                     <li><a class="dropdown-item" href=""><?=$_SESSION['login_data']['Correo']?></a></li>
                                     <li><a class="dropdown-item" href="?c=Principal&a=inicio">Iniciar Sesión</a></li>
                                     <li><a class="dropdown-item" href="?c=Principal&a=registro">Registrarse</a></li>
+                                    <?php if(!is_null($_SESSION['login_data'])){  ?>
                                     <li>
                                           <hr class="dropdown-divider" />
                                     </li>
+                                    <li><a class="dropdown-item" href="?c=Principal&a=cambiarClave">Cambiar contraseña</a></li>
                                     <li><a class="dropdown-item" href="?c=Usuario&a=logout">Cerrar Sesión</a></li>
+                                    <?php } ?>
                               </ul>
                         </div>
                         <?php
