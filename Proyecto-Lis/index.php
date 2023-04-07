@@ -1,5 +1,6 @@
 <?php
 session_start();
+error_reporting(E_ERROR|E_PARSE);
 
 require_once "./core/routes.php";
 require_once "./config/config.php";

@@ -65,11 +65,18 @@ class VentasModel extends Model
 
       public function updateCant($id, $cantVendidos)
       {
-            $sql = "UPDATE cuponr SET Disponibilidad = Disponibilidad - ?, CantidadVendido = ?
+            $sql = "UPDATE cuponr SET  CantidadVendido = ?
                   WHERE IdCuponR = ?";
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param('sss', $cantVendidos, $cantVendidos, $id);
+            $stmt->bind_param('ss', $cantVendidos, $id);
             return $stmt->execute();
+      }
+      public function updateCant2($id,$cantVendidos){
+            $sql = "UPDATE cuponr SET Disponibilidad = Disponibilidad - ?
+            WHERE IdCuponR = ?";
+      $stmt = $this->db->prepare($sql);
+      $stmt->bind_param('ss', $cantVendidos, $id);
+      return $stmt->execute();
       }
 
 }
