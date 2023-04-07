@@ -20,7 +20,7 @@ include ('views/layouts/header.php');
                         <tr>
                             <th scope="col">IdCupon</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
+                            
                             <th scope="col">Fecha de Compra</th>
                             <th scope="col">Estado</th>
 
@@ -34,7 +34,7 @@ include ('views/layouts/header.php');
                     <tr>
                         <th><?php echo $elemento["IdCuponV"]; ?></th>
                         <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
+                        
                         <td><?php echo $elemento["FechaCompra"]; ?></td>
                         <td><?php echo $elemento["Estado"]; ?></td>
                     </tr>
@@ -64,7 +64,7 @@ include ('views/layouts/header.php');
                         <tr>
                             <th scope="col">IdCupon</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
+                           
                             <th scope="col">Fecha de Compra</th>
                             <th scope="col">Estado</th>
 
@@ -80,7 +80,7 @@ include ('views/layouts/header.php');
                         
                         <th><?php echo $elemento["IdCuponV"]; ?></th>
                         <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
+                        
                         <td><?php echo $elemento["FechaCompra"]; ?></td>
                         <td><?php echo $elemento["Estado"]; ?></td>
                     </tr>
@@ -110,7 +110,7 @@ include ('views/layouts/header.php');
                         <tr>
                             <th scope="col">IdCupon</th>
                             <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
+                            
                             <th scope="col">Fecha de Compra</th>
                             <th scope="col">Estado</th>
 
@@ -126,7 +126,7 @@ include ('views/layouts/header.php');
                         
                         <th><?php echo $elemento["IdCuponV"]; ?></th>
                         <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
+                        
                         <td><?php echo $elemento["FechaCompra"]; ?></td>
                         <td><?php echo $elemento["Estado"]; ?></td>
                     </tr>
