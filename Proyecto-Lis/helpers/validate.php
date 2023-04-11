@@ -89,6 +89,15 @@ function validateDate($date, &$validate, &$errors)
             }
       }
 
+      if (!$date) {
+
+                  $validate = 0;
+                  $errors['fechaExp'] = 'Ingrese una fecha de vencimiento';
+                  return;
+            
+      }
+
+
       $validate = $validate == 0 ? 0 : 1;
       $errors['fechaExp'] =  '';
 }
