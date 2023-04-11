@@ -1,31 +1,41 @@
 <?php
-	
-	function cargarControlador($controlador){
+function cargarControlador($controlador){
 		
 		$nombreControlador = ucwords(strtolower($controlador))."Controller";
 		$archivoControlador = 'controllers/'.ucwords(strtolower($controlador)).'.php';
 		
+		//Si el controlador no existe, redirige a una pagina de error 404
 		if(!is_file($archivoControlador)){
-			
-			$archivoControlador= 'controllers/'.CONTROLADOR_PRINCIPAL.'.php';
-			
+			require_once './views/cliente/404.php';
 		}
-		require_once $archivoControlador;
-		$control = new $nombreControlador();
-		return $control;
+		//De lo contrario, si el controlador existe, lo carga
+		else
+		{
+			require_once $archivoControlador;
+			$control = new $nombreControlador();
+			return $control;
+		}
+
 	}
 	
 	function cargarAccion($controller, $accion, $id = null){
-		
-		if(isset($accion) && method_exists($controller, $accion)){
-			if($id == null){
-				$controller->$accion();
-				} else {
-				$controller->$accion($id);
-			}
-			}
-			 else {
-			$controller->ACCION_PRINCIPAL();
+		//Si el controlador existe, se validan los metodos
+		if($controller!=null){
+			//Si el metodo existe, lo carga
+			if(method_exists($controller, $accion)){
+				if($id == null){
+					$controller->$accion();
+					} else {
+					$controller->$accion($id);
+				}
+				}
+				//Si el metodo no existe, redirige a una pagina de error 404
+				if(!method_exists($controller, $accion)) {
+					//$controller->ACCION_PRINCIPAL();
+					require_once './views/cliente/404.php';
 		}	
+			
+		
+		}
 	}
 ?>
