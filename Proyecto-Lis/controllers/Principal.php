@@ -32,10 +32,29 @@ class PrincipalController
       {
             require_once "views/cliente/Registro.php";
       }
-      //mostrando pagina de cambio de contraseña
+
+      //mostrando página de validación de correo 
+      public function validarCorreo()
+      {
+        require_once "views/cliente/ValidarCorreo.php";
+      }
+
+      //mostrando página de cambio de clave
       public function cambiarClave()
       {
             require_once "views/cliente/CambioClave.php";
+      }
+
+      //mostrando página de recuperación de clave
+      public function cambiarClaveOT()
+      {
+            require_once "views/cliente/ClaveOlvidadaT.php";
+      }
+
+      //mostrando página de cambio de clave
+      public function cambiarClaveO()
+      {
+            require_once "views/cliente/ClaveOlvidada.php";
       }
 
 
