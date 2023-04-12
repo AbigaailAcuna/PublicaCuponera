@@ -15,23 +15,23 @@ class UsuarioController
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             
-            $email = trim($_POST['correo']);
-            $password = trim($_POST['clave']);
-        
-            // Verificar que el correo electrónico y la contraseña no estén vacíos
-            if (empty($email) || empty($password)) {
-                $_SESSION['error'] = 'Por favor ingrese su correo electrónico y contraseña';
+            $email = isset($_POST['correo']) ? $_POST['correo'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+            // Validación del correo electrónico y la contraseña
+            if (!isset($_POST['correo']) || !filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error'] = 'Ingrese una dirección de correo electrónico válida';
+                header('Location:?c=Principal&a=inicio');
+                exit;
+            } 
+            
+            if (empty($_POST['password'])) {
+                $_SESSION['error'] = 'Ingrese una contraseña';
                 header('Location:?c=Principal&a=inicio');
                 exit;
             }
-        
-            // Verificar que el correo electrónico tenga un formato válido
-            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['error'] = 'Por favor ingrese un correo electrónico válido';
-                header('Location:?c=Principal&a=inicio');
-                exit;
-            }
-        
+
+            // Verificando usuario
             if ($login_data = $userModel->getUser($email, $password)) {
                 if ($login_data = $userModel->validateUser($email)) {
                     $login_data = $login_data[0];
@@ -81,6 +81,7 @@ class UsuarioController
         return $newToken;
     }
 
+    ///Función para enviar correo
     public function enviarToken($correo, $subject, $body){
         
         require('./recursos/PHPMailer/Exception.php');
@@ -119,62 +120,68 @@ class UsuarioController
             echo 'Mensaje ' . $mail->ErrorInfo;
         }
     }
-    
+
+    //Funciones para validar campos 
+    public function test_input($data) 
+    {
+        $data = trim($data);
+        $data = stripslashes($data);
+        $data = htmlspecialchars($data);
+        return $data;
+    }
+
     public function registrar()
     {
 
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['signup'])) {
-
             $errors = array();
             
+            $nombres = isset($_POST['nombres']) ? $_POST['nombres']: '';
+            $apellidos = isset($_POST['apellidos']) ? $_POST['apellidos'] : '';
+            $telefono = isset($_POST['telefono']) ? $_POST['telefono'] : '';
+            $dui = isset($_POST['dui']) ? $_POST['dui'] : '';
+            $correo = isset($_POST['correo']) ? $_POST['correo'] : '';
+            $password = isset($_POST['password']) ? $_POST['password'] : '';
+            $direccion = isset($_POST['direccion']) ? $_POST['direccion'] : '';
+            $estado = "Inactivo";
+
             if (empty($_POST['nombres']) || !preg_match("/^[a-zA-Z ]*$/", $_POST['nombres'])) {
                 $errors['nombres'] = 'Ingrese un nombre válido';
-            } else {
-                $nombres = $_POST['nombres'];
             }
             
             if (empty($_POST['apellidos']) || !preg_match("/^[a-zA-Z ]*$/", $_POST['apellidos'])) {
                 $errors['apellidos'] = 'Ingrese un apellido válido';
-            } else {
-                $apellidos = $_POST['apellidos'];
-            }
+            } 
             
             if (!isset($_POST['telefono']) || !preg_match("/^[0-9_-]{8,9}$/", $_POST['telefono'])) {
                 $errors['telefono'] = 'Ingrese un número de teléfono válido';
-            } else {
-                $telefono = $_POST['telefono'];
-            }
+            } 
             
             if (!isset($_POST['dui']) || !preg_match("/^[0-9_-]{9,10}$/", $_POST['dui'])) {
                 $errors['dui'] = 'Ingrese un número de DUI válido';
-            } else {
-                $dui = $_POST['dui'];
-            }
+            } 
             
             if (!isset($_POST['correo']) || !filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL)) {
                 $errors['correo'] = 'Ingrese una dirección de correo electrónico válida';
-            } else {
-                $correo = $_POST['correo'];
-            }
+            } 
             
             if (empty($_POST['password'])) {
                 $errors['password'] = 'Ingrese una contraseña';
-            } else {
-                $password = $_POST['password'];
-            }
+            } 
 
             if (empty($_POST['direccion'])) {
                 $errors['direccion'] = 'Ingrese una direción';
-            } else {
-                $password = $_POST['direccion'];
-            }
-
-
-            $direccion = $_POST['direccion'];
-            $estado = "Inactivo";
+            } 
 
             if(!empty($errors)){
                 $_SESSION['errors'] = $errors;
+                $_SESSION['nombres'] = $nombres;
+                $_SESSION['apellidos'] = $apellidos;
+                $_SESSION['telefono'] = $telefono;
+                $_SESSION['dui'] = $dui;
+                $_SESSION['direccion'] = $direccion;
+                $_SESSION['correo'] = $correo;
+                $_SESSION['password'] = $password;
                 header('Location:?c=Principal&a=registro');
             }else{
             
