@@ -15,18 +15,19 @@ class UsuarioController
         
         if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['login'])) {
             
-            $email = isset($_POST['correo']) ? $_POST['correo'] : '';
-            $password = isset($_POST['password']) ? $_POST['password'] : '';
-
-            // Validación del correo electrónico y la contraseña
-            if (!isset($_POST['correo']) || !filter_var($_POST['correo'], FILTER_VALIDATE_EMAIL)) {
-                $_SESSION['error'] = 'Ingrese una dirección de correo electrónico válida';
+            $email = trim($_POST['correo']);
+            $password = trim($_POST['clave']);
+        
+            // Verificar que el correo electrónico y la contraseña no estén vacíos
+            if (empty($email) || empty($password)) {
+                $_SESSION['error'] = 'Por favor ingrese su correo electrónico y contraseña';
                 header('Location:?c=Principal&a=inicio');
                 exit;
-            } 
-            
-            if (empty($_POST['password'])) {
-                $_SESSION['error'] = 'Ingrese una contraseña';
+            }
+        
+            // Verificar que el correo electrónico tenga un formato válido
+            if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+                $_SESSION['error'] = 'Por favor ingrese un correo electrónico válido';
                 header('Location:?c=Principal&a=inicio');
                 exit;
             }
