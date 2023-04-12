@@ -50,6 +50,15 @@
           <?php endif; ?>
         
         <button name="signup" id="signup" >Registrarse</button>
+        
+        <?php
+        if (isset($_SESSION['error'])) {
+            echo '<div class="messageerror">';
+            echo '' . $_SESSION['error'] . '';
+            echo '</div>';
+            unset($_SESSION['error']);
+        }
+        ?>
 
         <p class="message">¿Ya posees una cuenta?<a href="?c=Principal&a=inicio"> Iniciar Sesión</a></p>
       </form>
