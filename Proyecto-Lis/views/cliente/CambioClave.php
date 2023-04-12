@@ -12,10 +12,10 @@
     <div class="form">
       <form class="login-form" action="?c=Usuario&a=cambiarClave" method="POST">
         <h1>Validar Token</h1>
-        <input type="email" name="correo" id="correo" placeholder="Correo" required  value="<?=$_SESSION['login_data']['Correo']?>"/>
-        <input type="password" name="clave1" id="clave1" placeholder="Contraseña" required/>
-        <input type="password" name="clave2" id="clave2" placeholder="Contraseña" required/>
-        <input type="password" name="clave3" id="clave3" placeholder="Contraseña" required/>
+        <input type="email" name="correo" id="correo" placeholder="Correo" value="<?=$_SESSION['login_data']['Correo']?>"/>
+        <input type="password" name="clave1" id="clave1" placeholder="Antigua contraseña" >
+        <input type="password" name="clave2" id="clave2" placeholder="Nueva contraseña" >
+        <input type="password" name="clave3" id="clave3" placeholder="Confirma tu contraseña" >
         <button name="validar" id="validar">Cambiar contraseña</button>
         
         <?php
@@ -24,12 +24,6 @@
           echo '<p>' . $_SESSION['error'] . '</p>';
           echo '</div>';
           unset($_SESSION['error']);
-        }
-        if (isset($_SESSION['message'])) {
-          echo '<div class="message">';
-          echo '' . $_SESSION['message'] . '';
-          echo '<p class="message"><a href="?c=Principal&a=inicio">Iniciar Sesión</a></p>';
-          unset($_SESSION['message']);
         }
         ?>
 
