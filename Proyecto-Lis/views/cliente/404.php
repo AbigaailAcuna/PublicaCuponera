@@ -6,7 +6,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
         <meta name="description" content="" />
         <meta name="author" content="" />
-        <title>404 Error - SB Admin</title>
+        <title>404 Error</title>
         <link href="http://localhost/Proyecto-Lis/recursos/css/header.css" rel="stylesheet" />
         <script src="https://use.fontawesome.com/releases/v6.1.0/js/all.js" crossorigin="anonymous"></script>
     </head>
@@ -19,10 +19,10 @@
                             <div class="col-lg-6">
                                 <div class="text-center mt-4">
                                     <img class="mb-4 img-error" src="http://localhost/Proyecto-Lis/recursos/assets/error-404-monochrome.svg" />
-                                    <p class="lead">This requested URL was not found on this server.</p>
+                                    <p class="lead">URL no encontrada en el servidor.</p>
                                     <a href="?c=Principal&a=index">
                                         <i class="fas fa-arrow-left me-1"></i>
-                                        Return to Dashboard
+                                        Regresar a la principal
                                     </a>
                                 </div>
                             </div>

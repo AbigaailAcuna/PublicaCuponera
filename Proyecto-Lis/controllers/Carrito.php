@@ -22,10 +22,19 @@ class CarritoController
                                     $numero = $i;
                               }
                         }
-                        if ($encontro == true) {
-                              $arreglo[$numero]['Cantidad'] = $arreglo[$numero]['Cantidad'] + 1;
+                       if ($encontro == true) {
+                              
+                              $dispo = $arreglo[$numero]['Disponibilidad'];
+                              if ($arreglo[$numero]['Cantidad'] >= $dispo) {
+                                    ///no agrega más
+                                    echo "Ya no puede agregar más de este cupón";
+                              } else {
+                                    $arreglo[$numero]['Cantidad'] = $arreglo[$numero]['Cantidad'] + 1;
                               $_SESSION['carrito'] = $arreglo;
-                        } else {
+                              }
+                         }
+            
+                        else {
                               $nombre = $info["cupones"]["Titulo"];
                               $precio = $info["cupones"]["PrecioRegular"];
                               $imagen = $info["cupones"]["imagen"];
@@ -92,7 +101,7 @@ class CarritoController
             }
             header('Location:?c=Principal&a=carrito');
       }
-
+      //botón sumar 
       public function sumar($id)
       {
             //vemos qué acción hay que ejecutar
@@ -119,9 +128,10 @@ class CarritoController
                   }
             }
       }
-
+  //botón restar
       public function restar($id)
       {
+          
             if (isset($_SESSION['carrito'])) {
                   $arreglo = $_SESSION['carrito'];
                   //hay una acción en la url
