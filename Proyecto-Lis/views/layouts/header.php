@@ -18,6 +18,10 @@ error_reporting(E_ERROR|E_PARSE);?>
       <!-- Core theme CSS (includes Bootstrap)-->
       <link href="http://localhost/Proyecto-Lis/recursos/css/header.css" rel="stylesheet" />
       <link href="http://localhost/Proyecto-Lis/recursos/css/pago.css" rel="stylesheet" />
+      <!-- Bootstrap core JS-->
+      <script src="http://localhost/Proyecto-Lis/recursos/js/header.js"></script>
+      <!-- Core theme JS-->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
 </head>
 
 <body>
@@ -33,21 +37,22 @@ error_reporting(E_ERROR|E_PARSE);?>
                               <li class="nav-item"><a class="nav-link active" aria-current="page" href="./index.php">Inicio</a></li>
                               </li>
                         </ul>
-                        <a href="#exampleModalToggle" data-bs-toggle="modal"><i class="bi bi-file-text" style="font-size: 2rem; color: rgb(0, 0, 0);"></i></a>
+                  
+                        <?php if(!is_null($_SESSION['login_data'])){  ?>
+                              <a href="#exampleModalToggle" data-bs-toggle="modal"><i class="bi bi-file-text" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i></a>
+                        <?php }?>
                         <div class="nav-item dropdown">
-                              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill" style="font-size: 2rem; color: rgb(0, 0, 0);"></i></a>
+                              <a class="nav-link dropdown-toggle" id="navbarDropdown" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi bi-person-fill" style="font-size: 1.5rem; color: rgb(0, 0, 0);"></i></a>
                               <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
                               <?php if(is_null($_SESSION['login_data'])){  ?>
                                     <li><a class="dropdown-item" href="?c=Principal&a=inicio">Iniciar Sesión</a></li>
                                     <li><a class="dropdown-item" href="?c=Principal&a=registro">Registrarse</a></li>
-                                    <?php } else { ?>
-                                          <li><a class="dropdown-item" href=""><?=$_SESSION['login_data']['Correo']?></a></li>
-                                          <li>
-                                                <hr class="dropdown-divider" />
-                                          </li>
-                                          <li><a class="dropdown-item" href="?c=Principal&a=cambiarClave">Cambiar contraseña</a></li>
-                                          <li><a class="dropdown-item" href="?c=Usuario&a=logout">Cerrar Sesión</a></li>
-                                          <?php } ?>
+                              <?php } else { ?>
+                                    <li><a class="dropdown-item" href=""><?=$_SESSION['login_data']['Correo']?></a></li>
+                                    <li><hr class="dropdown-divider" /></li>
+                                    <li><a class="dropdown-item" href="?c=Principal&a=cambiarClave">Cambiar contraseña</a></li>
+                                    <li><a class="dropdown-item" href="?c=Usuario&a=logout">Cerrar Sesión</a></li>
+                                    <?php } ?>
                               </ul>
                         </div>
                         <?php
