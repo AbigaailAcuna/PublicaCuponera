@@ -13,29 +13,43 @@
     <div class="form">
       <form class="login-form" method="POST" action="?c=Usuario&a=registrar">
         <h1>Registro</h1>
-        <input type="text" name="nombres" id="nombres" placeholder="Nombres">
-        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
-        <input type="text" name="telefono" id="telefono" placeholder="Teléfono" pattern="[0-9_-]{8,9}">
-        <input type="text" name="direccion" id="direccion" placeholder="Dirección">
-        <input type="text" name="dui" id="dui" placeholder="Dui" pattern="[0-9_-]{9,10}">
-        <input type="email" name="correo" id="correo" placeholder="Correo" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,}$">
-        <input type="password" name="password" id="password" placeholder="Contraseña">
-        <button name="signup" id="signup" >Registrarse</button>
         
-        <?php
-        if (isset($_SESSION['error'])) {
-          echo '<div class="messageerror">';
-          echo '' . $_SESSION['error'] . '';
-          echo '</div>';
-          unset($_SESSION['error']);
-        }
-        if (isset($_SESSION['message'])) {
-          echo '<div class="message">';
-          echo '' . $_SESSION['message'] . '';
-          echo '</div>';
-          unset($_SESSION['message']);
-        }
-        ?>
+        <input type="text" name="nombres" id="nombres" placeholder="Nombres">
+        <?php if (!empty($_SESSION['errors']['nombres'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['nombres']; unset($_SESSION['errors']['nombres']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+        
+        <input type="text" name="apellidos" id="apellidos" placeholder="Apellidos">
+        <?php if (!empty($_SESSION['errors']['apellidos'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['apellidos']; unset($_SESSION['errors']['apellidos']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+        
+        <input type="text" name="telefono" id="telefono" placeholder="Teléfono">
+        <?php if (!empty($_SESSION['errors']['telefono'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['telefono']; unset($_SESSION['errors']['telefono']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+      
+        <input type="text" name="direccion" id="direccion" placeholder="Dirección">
+        <?php if (!empty($_SESSION['errors']['direccion'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['direccion']; unset($_SESSION['errors']['direccion']); $errors = array();?></div><br>
+          <?php endif; ?>
+        
+        <input type="text" name="dui" id="dui" placeholder="Dui">
+        <?php if (!empty($_SESSION['errors']['dui'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['dui']; unset($_SESSION['errors']['dui']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+        
+        <input type="email" name="correo" id="correo" placeholder="Correo">
+        <?php if (!empty($_SESSION['errors']['correo'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['correo']; unset($_SESSION['errors']['correo']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+        
+        <input type="password" name="password" id="password" placeholder="Contraseña">
+        <?php if (!empty($_SESSION['errors']['password'])): ?>
+          <div class="redmessagee"><?php echo $_SESSION['errors']['password']; unset($_SESSION['errors']['password']); $errors = array(); ?></div><br>
+          <?php endif; ?>
+        
+        <button name="signup" id="signup" >Registrarse</button>
 
         <p class="message">¿Ya posees una cuenta?<a href="?c=Principal&a=inicio"> Iniciar Sesión</a></p>
       </form>
