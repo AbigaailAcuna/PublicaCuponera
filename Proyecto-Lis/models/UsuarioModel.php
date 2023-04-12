@@ -2,7 +2,8 @@
 
 include_once ("./config/bd.php");
 include 'Model.php';
-class UsuarioModel extends Model{
+
+class UsuarioModel extends Model {
     private $db;
   
     public function __construct() {
@@ -17,6 +18,12 @@ class UsuarioModel extends Model{
         return $stmt->execute();
     }
 
+    public function validarToken($token){
+        $sql = "SELECT * FROM cliente WHERE Token =$token";
+        $result = $this->db->query($sql);
+        return ( $result->num_rows > 0);
+    }
+
     public function existeUsuario($correo){
         $sql = "SELECT * FROM cliente WHERE Correo='$correo'";
         $result = $this->db->query($sql);
@@ -24,8 +31,29 @@ class UsuarioModel extends Model{
     }
 
     public function getUser($correo, $password){
-        $sql = "SELECT * FROM cliente WHERE Correo='$correo' AND Clave = SHA2('$password',256) and Estado='Activo'";
-        return $this->get($sql,['Correo'=>$correo, 'Clave'=>$password]);
+        $sql = "SELECT * FROM cliente WHERE Correo='$correo' AND Clave = SHA2('$password',256)";
+        return $this->get($sql);
+    }
+
+    public function validateUser($correo ){
+        $sql = "SELECT * FROM cliente WHERE Correo='$correo' and Estado='Activo'";
+        return $this->get($sql);
+    }
+
+    public function cambiarToken($correo, $token){
+        $stmt = $this->db->prepare("UPDATE cliente SET Token=? WHERE correo=?");
+        $stmt->bind_param("ss", $token, $correo);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
+    }
+
+    public function cambiarClaveO($token, $password){
+        $stmt = $this->db->prepare("UPDATE cliente SET Clave=SHA2(?,256) WHERE Token=?");
+        $stmt->bind_param("ss", $password, $token);
+        $result = $stmt->execute();
+        $stmt->close();
+        return $result;
     }
 
     public function getUserpass($correo, $password){
@@ -40,14 +68,15 @@ class UsuarioModel extends Model{
         return ($result->num_rows > 0);
     }
 
-    public function CambiarClave($correo, $password){
-        $stmt = $this->db->prepare("UPDATE cliente SET Clave = SHA2('$password',256) WHERE correo='$correo'");
+    public function cambiarClave($correo, $password){
+        $stmt = $this->db->prepare("UPDATE cliente SET Clave = SHA2(?,256) WHERE correo=?");
+        $stmt->bind_param("ss", $password, $correo);
         $result = $stmt->execute();
         $stmt->close();
         return $result;
     }
 
-    public function CambiarEstado($correo, $token){
+    public function cambiarEstado($correo, $token){
         $stmt = $this->db->prepare("UPDATE cliente SET estado='Activo' WHERE correo=? AND token=?");
         $stmt->bind_param("ss", $correo, $token);
         $result = $stmt->execute();
