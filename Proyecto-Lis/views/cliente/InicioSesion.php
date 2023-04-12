@@ -25,6 +25,7 @@
         }
         ?>
         
+        <p class="message"><a href="?c=Principal&a=cambiarClaveOT">¿Olvidaste tu contraseña?</a></p>
         <p class="message"><a href="?c=Principal&a=registro">¿No posees una cuenta?</a></p>
       </form>
     </div>
