@@ -12,22 +12,16 @@
     <div class="form">
       <form class="login-form" action="?c=Usuario&a=validarRegistro" method="POST">
         <h1>Validar Token</h1>
-        <input type="email" name="correo" id="correo" placeholder="Correo" required/>
-        <input type="text" name="token" id="token" placeholder="Token" required/>
+        <input type="email" name="correo" id="correo" placeholder="Correo" >
+        <input type="text" name="token" id="token" placeholder="Token" >
         <button name="validar" id="validar">Validar</button>
         
         <?php
         if (isset($_SESSION['error'])) {
-          echo '<div class="messageerror"><i>&#9888;</i>';
+          echo '<div class="messageerror">';
           echo '' . $_SESSION['error'] . '';
           echo '</div>';
           unset($_SESSION['error']);
-        }
-        if (isset($_SESSION['message'])) {
-          echo '<div class="messagee"><i>&#9888;</i>';
-          echo '' . $_SESSION['message'] . '';
-          echo '</div>';
-          unset($_SESSION['message']);
         }
         ?>
 
