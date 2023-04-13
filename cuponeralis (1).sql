@@ -39,7 +39,10 @@ CREATE TABLE IF NOT EXISTS `categoria` (
 --
 
 INSERT INTO `categoria` (`IdCategoria`, `NombreCategoria`) VALUES
-(1, 'Belleza');
+(1, 'Estetica'),
+(2, 'Automoviles y carrocería'),
+(3, 'Comida'),
+(4, 'Salud');
 
 -- --------------------------------------------------------
 
@@ -69,6 +72,7 @@ CREATE TABLE IF NOT EXISTS `cliente` (
 INSERT INTO `cliente` (`IdCliente`, `Nombres`, `Apellidos`, `Dui`, `Telefono`, `Correo`, `Direccion`, `Clave`, `Estado`, `Token`) VALUES
 (1, 'Abigail', 'Acuna', '987321456', '78451236', 'acuaabigail@yahoo.com', 'aaaa', 'a665a45920422f9d417e4867efdc4fb8a04a1f3fff1fa07e998e86f7f7a27ae3', 'Activo', '733BDF'),
 (3, 'Neivy', 'Acuna', '987321456', '72540178', 'erikaacuna671@gmail.com', 'aaaa', '8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92', 'Activo', '1AB519');
+
 
 -- --------------------------------------------------------
 
@@ -101,11 +105,14 @@ CREATE TABLE IF NOT EXISTS `cuponr` (
 --
 
 INSERT INTO `cuponr` (`IdCuponR`, `IdEmpresaR`, `Titulo`, `PrecioRegular`, `PrecioOferta`, `FechaInicio`, `FechaFin`, `FechaLimiteUso`, `Descripcion`, `OtrosDetalles`, `Disponibilidad`, `Estado`, `imagen`, `CantidadVendido`) VALUES
-('CUP0001', 'EMP001', 'Cupón de Belleza', '15.99', '0.00', '2023-02-01', '2023-02-28', '2023-03-09', 'Cupon 10/10', 'Canjeable', 15, 'Activo', 'cuponmasaje.jpg', 0),
-('CUP0002', 'EMP002', 'Cupón deRopa', '20.32', '0.00', '2023-02-02', '2023-03-08', '2023-02-01', 'Cupón de ropa sensacional', 'Canjeable fácil, restricciones aplican', 10, 'Activo', 'cuponmasaje.jpg', 0),
-('CUP0003', 'EMP003', 'Cupón de Masajes', '25.00', '23.00', '2023-04-06', '2023-05-11', '2023-06-16', 'El mejor masaje, al mejor precio', 'Fácil uso', 15, 'Activo', 'cuponmasaje.jpg', 0),
-('CUP0004', 'EMP004', 'Cupón prueba', '2.35', '1.99', '2023-04-06', '2023-06-14', '2023-04-13', 'cc', 'cccvv', 10, 'Activo', 'cuponprueba.jpg', 0),
-('CUP0005', 'EMP005', 'Cupon de Cirugia', '1200.00', '0.00', '2023-04-06', '2023-03-08', '2023-04-13', 'Cupón 10/10 cirugia', '', 10, 'Activo', 'cuponbelleza.jpg', 0);
+('CUP0001', 'EMP001', '85% de descuento en limpieza facial', '130.00', '20.00', '2023-04-01', '2023-02-28', '2023-03-09', '¡Paga $20 en Lugar de $130 por 2 Sesiones de Limpieza Facial Profunda con: 1 Microdermoabrasión con Punta de Diamante + 1 Extracción de Puntos Negros con Vapor de Ozono + 2 Exfoliaciones + 2 Aplicaciones de Serum + 2 Crioterapias y Más!', 'Canjeable', 15, 'Activo', 'facial.jpg', 0),
+('CUP0002', 'EMP002', '51% de descuento en lavado de tapiceria', '38.00', '18.50', '2023-03-02', '2023-05-14', '2023-06-14', '¡Paga $18.50 en Lugar de $38 por Lavado de Tapicería de Vehículo a Domicilio!', 'Canjeable fácil, restricciones aplican', 11, 'Activo', 'tapiceria.jpg', 0),
+('CUP0003', 'EMP003', '52% de descuento en polarizado', '62.00', '30.00', '2023-04-06', '2023-05-11', '2023-06-16', '¡Paga $30 en Lugar de $62 por Polarizado Automotriz con Garantía de 6 Meses + Pulido de Silvines + Car Wash Completo (Lavado, Aspirado y Pasteado a Mano) + Revisión de 21 Puntos!', 'Fácil uso', 20, 'Activo', 'polarizado.jpg', 0),
+('CUP0004', 'EMP004', '72% de descuento en corte de cabello', '36.00', '10.00', '2023-04-06', '2023-06-14', '2023-04-13', '¡Paga $10 en Lugar de $36 por Paquetes de Servicios a Elección: A) 4 Lavados + 4 Cortes de Cabello + 4 Aplicaciones de Cera o Gel o B) 3 Cortes de Cabello + 3 Lavados + 1 Corte y 1 Lavado de Barba!', 'Puedes compartir tu cupón—la oportunidad perfecta para pasar un rato agradable entre machos con tu papá, tu hijo, tu mejor amigo o quien quieras.', 15, 'Activo', 'barberia.jpg', 0),
+('CUP0005', 'EMP005', '35% de descuento en banquete de costillas', '61.86', '39.95', '2023-04-06', '2023-03-08', '2023-04-13', 'Banquete Ribs & BBQ para 4 personas: Smokehouse + Pulled Pork Nachos + Flavored Limonade', '', 29, 'Activo', 'costillas.jpg', 0),
+('CUP0006', 'EMP006', '50% de descuento en taquiza', '22.95', '11.45', '2023-04-06', '2023-03-08', '2023-04-13', '¡Paga $11.50 en Lugar de $22.95 por Taquiza que Incluye: 1 Libra de Carne a Elección entre Pollo, Pastor, Hawaiana o Mixta + 12 Tacos de Doble Tortilla con Queso Fundido + 4 Caldos de Birria + Acompañamientos!', 'Taquiza con 12 tacos de tortilla doble con queso fundido y carne de tu elección—pollo, pastor, hawaiana o mixta. Todos acompañados de su chimol y sus ricas salsas picantes y no picantes, incluye 4 deliciosos caldos de birria.', 16, 'Activo', 'tacos.jpg', 0),
+('CUP0007', 'EMP007', '88% de descuento en examenes de laboratorio', '147.50', '18.00', '2023-04-08', '2023-05-09', '2023-05-09', '¡Paga $18 en Lugar de $147.50 por 28 Exámenes de Laboratorio Clínico: Glucosa, Colesterol, Trigliceridos, Creatinina y Más!', '28 exámenes de laboratorio que evaluarán los problemas más habituales de salud y que son un riesgo para tu vida: enfermedades cardiovasculares, sobrepeso, niveles de colesterol elevados, mala circulación, artritis, hipertensión arterial o diabetesa.', 16, 'Activo', 'laboratorio.jpg', 0),
+('CUP0008', 'EMP008', '68% de descuento en masajes ', '147.50', '18.00', '2023-04-08', '2023-05-09', '2023-05-09', '¡Paga $19.20 en Lugar de $60 por 2 Masajes Relajantes + 2 Masajes de Piedras Calientes + 2 Masajes Craneofacial + 2 Reflexologías!', 'Cada sesión tiene una duración de 45 minutos. Si quieres puedes compartir el cupón o disfrutar tu solo de ambas sesiones, los aceites utilizados en los masajes son 100% naturales extraídos del Mar Muerto en Israel—una combinación de minerales que nutren la piel, mientras te relajas.', 10, 'Activo', 'masajes.jpg', 0);
 
 -- --------------------------------------------------------
 
@@ -170,8 +177,15 @@ CREATE TABLE IF NOT EXISTS `empresar` (
 -- Volcado de datos para la tabla `empresar`
 --
 
-INSERT INTO `empresar` (`IdEmpresaR`, `IdCategeoria`, `NombreEmpresa`, `Direccion`, `NombreContacto`, `Telefono`, `Correo`, `Rubro`, `Comision`) VALUES
-('EMP001', 1, 'MAC', 'Empresa de belleza extranjera', 'Lic.Carolina Herrera', '78451232', 'hola123@gmail.com', 'Gerente', '0.99');
+INSERT INTO `empresar` (`IdEmpresaR`, `IdCategoria`, `NombreEmpresa`, `Direccion`, `NombreContacto`, `Telefono`, `Correo`, `Rubro`, `Comision`) VALUES
+('EMP001', 1, 'Clínica Dra Pamela Rodríguez', 'Medicentro Plaza, Colonia Medica Local 19, Nivel 1', 'Lic.Carolina Herrera', '78451232', 'hola123@gmail.com', 'Secretaria', '0.99'),
+('EMP002', 2, 'Multiservicios A W', '33 av. Norte residencial decapoli. Centro comercial metro ganga, San Salvador, El Salvador', 'Fernando Bonilla', '72346789', 'febonilla@gmail.com', 'Empleado', '0.75'),
+('EMP003', 2, 'Taller Gran Turismo El Salvador', 'Calle Chiltiupan, Santa Tecla, El Salvador Santa Tecla (El Salvador), Departamento de La Libertad', 'Melvin Carias', '79357645', 'carias04@gmail.com', 'Gerente', '0.64'),
+('EMP004', 1, 'Machos Barber Shop', 'PQ47+JPR, San Salvador', 'Gerardo Palacios', '65786543', 'gerardo33@gmail.com', 'Gerente', '0.80'),
+('EMP005', 3, 'Ribs & Bones', 'Centro Comercial Multiplaza, Primer nivel, Las Terrazas, Antiguo Cuscatlán, La Libertad, El Salvado', 'Daniela Rivas', '78652134', 'danrivas23@gmail.com', 'Gerente', '0.85'),
+('EMP006', 3, 'Las Trajineras', '79 Av Sur 455, San Salvador', 'Gabriela Romero', '78652134', 'gaby02@gmail.com', 'Gerente', '0.75'),
+('EMP007', 4, 'Laboratorio Clinico Jireh', '85 Avenida Norte, local 3 C Paseo General Escalón Col. Escalón, San Salvador 0016-800\r\nMostra', 'Daniela Anzora', '77634576', 'anzora12@gmail.com', 'Recepcionista', '0.88'),
+('EMP008', 4, 'Mar de Vida Minerales y Spa', '79 Av. Norte, Plaza Maya Cristal local 9 Colonia Escalon, San Salvador 0016800', 'Marcos Granillo', '78654321', 'mbeat05@gmail.com', 'Encargado de marketing', '0.80');
 
 -- --------------------------------------------------------
 
