@@ -143,7 +143,7 @@ if (is_dir($dir)) {
                             <div class="card-body p-4">
                               <div class="text-center">
                                 <h5 class="fw-bolder"><?php echo $dato["Titulo"]?></h5>
-                                <?php echo '$'. $dato["PrecioRegular"]?>
+                                <?php echo '$'. $dato["PrecioCupon"]?>
                               </div>
                             </div>
                             <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
