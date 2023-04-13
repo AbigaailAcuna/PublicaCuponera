@@ -19,7 +19,7 @@ class UsuarioModel extends Model {
     }
 
     public function validarToken($token){
-        $sql = "SELECT * FROM cliente WHERE Token =$token";
+        $sql = "SELECT * FROM cliente WHERE Token ='$token'";
         $result = $this->db->query($sql);
         return ( $result->num_rows > 0);
     }

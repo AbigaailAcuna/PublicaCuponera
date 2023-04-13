@@ -36,7 +36,7 @@ class CarritoController
             
                         else {
                               $nombre = $info["cupones"]["Titulo"];
-                              $precio = $info["cupones"]["PrecioRegular"];
+                              $precio = $info["cupones"]["PrecioCupon"];
                               $imagen = $info["cupones"]["imagen"];
                               $idEmpresa = $info["cupones"]["IdEmpresaR"];
                               $disponibilidad = $info["cupones"]["Disponibilidad"];
@@ -57,7 +57,7 @@ class CarritoController
                   }
             } else if (isset($_GET['id'])) {
                   $nombre = $info["cupones"]["Titulo"];
-                  $precio = $info["cupones"]["PrecioRegular"];
+                  $precio = $info["cupones"]["PrecioCupon"];
                   $imagen = $info["cupones"]["imagen"];
                   $idEmpresa = $info["cupones"]["IdEmpresaR"];
                   $disponibilidad = $info["cupones"]["Disponibilidad"];

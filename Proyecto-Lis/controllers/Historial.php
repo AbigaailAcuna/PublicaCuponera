@@ -12,7 +12,7 @@ class HistorialController
         if (isset($_SESSION['login_data'])) {
             $info["historialpdf"]['Disponibles'] = $historialpdf->getCuponDisponibles($_SESSION['login_data']['IdCliente'], $_POST['IdCuponv']);
         }
-        $descuento = $info["historialpdf"]['Disponibles'][0]['PrecioOferta']*100/($info["historialpdf"]['Disponibles'][0]['PrecioRegular']);
+        $descuento = Round($info["historialpdf"]['Disponibles'][0]['PrecioOferta']*100/($info["historialpdf"]['Disponibles'][0]['PrecioRegular']),2);
         $html = '<html>
         <head>
             <meta charset="UTF-8">

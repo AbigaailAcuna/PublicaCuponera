@@ -21,6 +21,7 @@ error_reporting(E_ERROR|E_PARSE);?>
       <!-- Bootstrap core JS-->
       <script src="http://localhost/Proyecto-Lis/recursos/js/header.js" defer></script>
       <!-- Core theme JS-->
+
       <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 

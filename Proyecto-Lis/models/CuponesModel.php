@@ -15,7 +15,7 @@ include 'Model.php';
 
      //método para mostrar los productos
     public function getCupones(){
-        $query = "SELECT IdCuponR, Titulo, PrecioRegular, imagen FROM cuponr WHERE Estado = 'Activo'";
+        $query = "SELECT IdCuponR, Titulo, PrecioCupon, imagen FROM cuponr WHERE Estado = 'Activo'";
         return $this->get($query);
     }
 
@@ -31,7 +31,7 @@ include 'Model.php';
     }
 
     public function getCuponCat($id){
-        $query = "SELECT R.IdCuponR, R.Titulo, R.PrecioRegular, R.imagen, E.IdCategeoria FROM cuponr R INNER JOIN empresar E WHERE E.IdCategeoria = '$id'";
+        $query = "SELECT R.IdCuponR, R.Titulo, R.PrecioCupon, R.imagen, E.IdCategeoria FROM cuponr R INNER JOIN empresar E ON R.IdEmpresaR = E.IdEmpresaR WHERE E.IdCategeoria = '$id'";
         return $this->get($query);
     }
 }
