@@ -19,9 +19,9 @@ error_reporting(E_ERROR|E_PARSE);?>
       <link href="http://localhost/Proyecto-Lis/recursos/css/header.css" rel="stylesheet" />
       <link href="http://localhost/Proyecto-Lis/recursos/css/pago.css" rel="stylesheet" />
       <!-- Bootstrap core JS-->
-      <script src="http://localhost/Proyecto-Lis/recursos/js/header.js"></script>
+      <script src="http://localhost/Proyecto-Lis/recursos/js/header.js" defer></script>
       <!-- Core theme JS-->
-      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" defer></script>
 </head>
 
 <body>
@@ -88,3 +88,4 @@ error_reporting(E_ERROR|E_PARSE);?>
                   </div>
             </div>
       </nav>
+<?php require_once './views/cliente/modal.php';?>

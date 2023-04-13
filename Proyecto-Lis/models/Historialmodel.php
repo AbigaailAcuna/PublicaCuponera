@@ -33,6 +33,11 @@ include_once "Model.php";
         return $this->get($query);
     }
 
+    public function getCuponDisponibles($id,$id2){
+        $query = "SELECT V.IdCuponV, R.Titulo, R.FechaLimiteUso, V.Estado,R.PrecioRegular, R.PrecioOferta FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.IdCuponV = '$id2'";
+        return $this->get($query);
+    }
+
        
    
 }

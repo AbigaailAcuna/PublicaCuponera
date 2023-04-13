@@ -11,8 +11,13 @@ class PrincipalController
             //instanciamos el modelo
             $cupones = new CuponesModel();
             $historial = new HistorialModel();
+            
             //traemos el método del modelo
             $info["cupones"] = $cupones->getCupones();
+            $info['categoria'] = $cupones->getCategorias();
+            if(isset($_POST['categoria'])){
+                  $info['cuponesC'] =  $cupones->getCuponCat($_POST['categoria']);
+                  }
             if(isset($_SESSION['login_data'])){
             $info["historial"]['Canjeados'] = $historial->getCuponesCanjeados($_SESSION['login_data']['IdCliente']);
             $info["historial"]['Vencidos'] = $historial->getCuponesVencidos($_SESSION['login_data']['IdCliente']);
@@ -72,9 +77,16 @@ class PrincipalController
       }
       public function carrito()
       {
+            require_once "./models/Historialmodel.php";
             $validate = -1;
             $carrito = $_SESSION['carrito'];
             $errors = [];
+            $historial = new HistorialModel();
+            if(isset($_SESSION['login_data'])){
+                  $info["historial"]['Canjeados'] = $historial->getCuponesCanjeados($_SESSION['login_data']['IdCliente']);
+                  $info["historial"]['Vencidos'] = $historial->getCuponesVencidos($_SESSION['login_data']['IdCliente']);
+                  $info["historial"]['Disponibles'] = $historial->getCuponesDisponibles($_SESSION['login_data']['IdCliente']);
+                  }
 
             if (isset($_POST['pagar'])) {
                   extract($_POST);

@@ -24,6 +24,16 @@ include 'Model.php';
         $query = "SELECT * FROM cuponr WHERE IdCuponR = ?";
         return $this->getOne($query,$id);
     }    
+
+    public function getCategorias(){
+        $query = "SELECT*FROM categoria";
+        return $this->get($query);
+    }
+
+    public function getCuponCat($id){
+        $query = "SELECT R.IdCuponR, R.Titulo, R.PrecioRegular, R.imagen, E.IdCategeoria FROM cuponr R INNER JOIN empresar E WHERE E.IdCategeoria = '$id'";
+        return $this->get($query);
+    }
 }
 
 ?>

@@ -8,142 +8,7 @@
 <!-- Modal -->
 
 <body class="fondo">
-<div class="modal fade" id="exampleModalToggle" aria-hidden="true" aria-labelledby="exampleModalToggleLabel" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel">Cupones disponibles</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">IdCupon</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha de Compra</th>
-                            <th scope="col">Estado</th>
 
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    <?php 
-                   if(isset($info["historial"]["Disponibles"])){
-                    foreach ($info["historial"]["Disponibles"] as $elemento) { ?>
-                    <tr>
-                        <th><?php echo $elemento["IdCuponV"]; ?></th>
-                        <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
-                        <td><?php echo $elemento["FechaCompra"]; ?></td>
-                        <td><?php echo $elemento["Estado"]; ?></td>
-                    </tr>
-                <?php }}?>
-                
-                    </tbody>
-                </table>
-              
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Vencidos</button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Canjeados</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModalToggle2" aria-hidden="true" aria-labelledby="exampleModalToggleLabel2" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg"  role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel2">Cupones Vencidos</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">IdCupon</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha de Compra</th>
-                            <th scope="col">Estado</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    <?php 
-                    
-                   if(isset($info["historial"]["Vencidos"])){
-                    foreach ($info["historial"]["Vencidos"] as $elemento) { ?>
-                    <tr>
-                        
-                        <th><?php echo $elemento["IdCuponV"]; ?></th>
-                        <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
-                        <td><?php echo $elemento["FechaCompra"]; ?></td>
-                        <td><?php echo $elemento["Estado"]; ?></td>
-                    </tr>
-                <?php }}?>
-                
-                    </tbody>
-                </table>
-                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Disponibles</button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle3" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Canjeados</button>
-            </div>
-        </div>
-    </div>
-</div>
-<div class="modal fade" id="exampleModalToggle3" aria-hidden="true" aria-labelledby="exampleModalToggleLabel3" tabindex="-1">
-    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalToggleLabel3">Cupones Canjeados</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-            <table class="table">
-                    <thead>
-                        <tr>
-                            <th scope="col">IdCupon</th>
-                            <th scope="col">Titulo</th>
-                            <th scope="col">Cantidad</th>
-                            <th scope="col">Fecha de Compra</th>
-                            <th scope="col">Estado</th>
-
-                        </tr>
-                    </thead>
-                    <tbody>
-                        
-                    <?php 
-                    
-                   if(isset($info["historial"]['Canjeados'])){
-                    foreach ($info["historial"]['Canjeados'] as $elemento) { ?>
-                    <tr>
-                        
-                        <th><?php echo $elemento["IdCuponV"]; ?></th>
-                        <td><?php echo $elemento["Titulo"]; ?></td>
-                        <td><?php echo $elemento["Cantidad"]; ?></td>
-                        <td><?php echo $elemento["FechaCompra"]; ?></td>
-                        <td><?php echo $elemento["Estado"]; ?></td>
-                    </tr>
-                <?php }}?>
-                
-                    </tbody>
-                </table>
-                
-            </div>
-            <div class="modal-footer">
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Disponibles</button>
-                <button class="btn btn-primary" data-bs-target="#exampleModalToggle2" data-bs-toggle="modal" data-bs-dismiss="modal">Ver Cupones Vencidos</button>
-            </div>
-        </div>
-    </div>
-</div>
 
  <!-- Header-->
  <header class="header py-5" >
@@ -229,14 +94,31 @@ if (is_dir($dir)) {
 <!--Agregando el search bar para filtrar por palabras-->
 
 <div class="buscar">
-<form action="" method="GET">
-    <label for="search-input" class="visually-hidden">Buscar cupón:</label>
-    <div class="input-group">
-      <input type="text" id="search-input" name="q" class="form-control" placeholder="Buscar cupón" aria-label="Buscar cupón" />
-      <button type="submit" class="btn btn-primary">Buscar</button>
-    </div>
-  </form>
-</div>
+            <form action="" method="GET">
+                <label for="search-input" class="visually-hidden">Buscar cupón:</label>
+                <div class="input-group">
+                    <input type="text" id="search-input" name="q" class="form-control" placeholder="Buscar cupón" aria-label="Buscar cupón" />
+                    <button type="submit" class="btn btn-primary">Buscar</button>
+                </div>
+            </form>
+
+            <div>
+                <form action="" method="POST">
+                <label for="">Filtrar por categoria: </label>
+                <select name="categoria" id="categoria">
+
+                    <?php foreach ($info['categoria'] as $categoria) { ?>
+                        <option name = 'IdCategoria' value='<?php echo $categoria['IdCategoria']; ?>'><?php echo $categoria['NombreCategoria'];  ?></option>
+
+                    <?php } ?>
+                </select>
+                <button name = 'Enviar' type="submit" class="btn btn-primary">Filtrar</button>
+                </form>
+             
+
+               
+            </div>
+        </div>
 
 
             <div class="main-content container-fluid px-5 my-5">
@@ -271,7 +153,42 @@ if (is_dir($dir)) {
                         </div>
                       <?php
                         }
-                      } else {
+                      }  if (isset($_POST['categoria'])) {
+                    
+                        foreach($info['cuponesC']  as $dato){?>
+                        <div class="col mb-5">
+                                <div class="card h-100">
+                                    <!-- Product image-->
+                                    <img src="<?php echo 'http://localhost/Proyecto-Lis/recursos/img/' . $dato["imagen"] ?>" class="card-img-top" alt="imágenes de cupones" width="40px" />
+                                    <!-- Product details-->
+                                    <div class="card-body p-4">
+                                        <div class="text-center">
+                                            <!-- Product name-->
+    
+                                            <h5 class="fw-bolder"><?php echo  $dato["Titulo"] ?></h5>
+                                            <!-- Product price-->
+                                            <?php echo '$' . $dato["PrecioRegular"] ?>
+    
+    
+    
+                                        </div>
+                                    </div>
+                                    <!-- Product actions-->
+                                    <div class="card-footer p-4 pt-0 border-top-0 bg-transparent">
+                                        <div class="text-center">
+                                            <a class="btn btn-dark mt-auto" href="?c=Principal&a=detalle&id=<?php echo $dato["IdCuponR"] ?>"><i class="bi bi-eyeglasses"></i></a>
+                                            <a class="btn btn-success mt-auto" href="?c=Carrito&a=agregar&id=<?php echo $dato["IdCuponR"] ?>"><i class="bi bi-cart"></i></a>
+                                        </div>
+    
+                                    </div>
+                                </div>
+                            </div>
+    
+                        <?php } 
+    
+                        
+                        
+                    } else {
                     foreach($info['cupones'] as $dato)
                     {
                     ?>
