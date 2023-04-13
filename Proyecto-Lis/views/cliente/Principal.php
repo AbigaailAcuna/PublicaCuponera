@@ -102,7 +102,11 @@ if (is_dir($dir)) {
                 </div>
             </form>
 
-            <div>
+
+    <div class="todo">
+    <a href="?c=Principal&a=index"> Ver todos los cupones</a>
+    </div>
+            <div class="categoria">
                 <form action="" method="POST">
                 <label for="">Filtrar por categoria: </label>
                 <select name="categoria" id="categoria">
@@ -119,7 +123,6 @@ if (is_dir($dir)) {
                
             </div>
         </div>
-
 
             <div class="main-content container-fluid px-5 my-5">
                     <div class="row gx-4 gx-lg-5 row-cols-2 row-cols-md-3 row-cols-xl-4 justify-content-center">
@@ -153,7 +156,7 @@ if (is_dir($dir)) {
                         </div>
                       <?php
                         }
-                      }  if (isset($_POST['categoria'])) {
+                      } else if (isset($_POST['categoria'])) {
                     
                         foreach($info['cuponesC']  as $dato){?>
                         <div class="col mb-5">
