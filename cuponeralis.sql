@@ -192,6 +192,8 @@ CREATE TABLE IF NOT EXISTS `empresar` (
   `Telefono` varchar(8) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Correo` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Comision` decimal(2,2) NOT NULL,
+  `Clave` varchar(20) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Rol` int NOT NULL,
   PRIMARY KEY (`IdEmpresaR`),
   KEY `IdCategoria` (`IdCategeoria`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci;
