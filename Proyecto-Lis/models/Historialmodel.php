@@ -19,17 +19,19 @@ include_once "Model.php";
 
      //método para mostrar los cupones de cada cliente
     public function getCuponesDisponibles($id){
-        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.Estado  = 'Disponible'";
+        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.Estado  = 1";
         return $this->get($query);
     }
 
     public function getCuponesVencidos($id){
-        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.Estado  = 'Vencido'";
+        $hoy=date('Y-m-d');
+        var_dump($hoy);
+        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND R.FechaFin<$hoy";
         return $this->get($query);
     }
 
     public function getCuponesCanjeados($id){
-        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.Estado  = 'Canjeado'";
+        $query = "SELECT V.IdCuponV, R.Titulo, S.FechaCompra, V.Estado FROM venta S  INNER JOIN cuponv V ON S.IdVenta = V.IdVenta INNER JOIN cuponr R ON S.IdCuponR = R.IdCuponR WHERE V.IdCliente = '$id' AND V.Estado  = 2";
         return $this->get($query);
     }
 

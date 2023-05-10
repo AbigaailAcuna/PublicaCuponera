@@ -54,7 +54,7 @@ class VentasModel extends Model
             $sql = "INSERT INTO cuponv (IdCuponV,IdVenta,IdCupon, IdCliente, Estado) 
                   VALUES (?, ?, ?, ?, ?)";
             $stmt = $this->db->prepare($sql);
-            $stmt->bind_param('sssss',$IdCuponV, $IdVenta, $IdCupon, $IdCliente, $Estado);
+            $stmt->bind_param('ssssi',$IdCuponV, $IdVenta, $IdCupon, $IdCliente, $Estado);
             return $stmt->execute();
       }
 

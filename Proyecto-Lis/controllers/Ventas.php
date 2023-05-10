@@ -44,7 +44,7 @@ class VentasController
                         'IdVenta' => $ventasModel->getIdVenta()[0]['IdVenta'],
                         'IdCupon'  => $cupon['Id'],
                         'IdCliente' => $_SESSION['login_data']['IdCliente'],
-                        'Estado' => "disponible"
+                        'Estado' => 1
 
 
                     ];
