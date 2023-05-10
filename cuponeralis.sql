@@ -171,8 +171,8 @@ CREATE TABLE IF NOT EXISTS `empleado` (
   `Nombres` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Apellidos` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Telefono` varchar(8) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
-  `Correo` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
-  `Clave` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Email` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Password` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Rol` int NOT NULL,
   `Rubro` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   PRIMARY KEY (`IdEmpleado`),
@@ -184,7 +184,7 @@ CREATE TABLE IF NOT EXISTS `empleado` (
 -- Dumping data for table `empleado`
 --
 
-INSERT INTO `empleado` (`IdEmpleado`, `IdEmpresaR`, `Nombres`, `Apellidos`, `Telefono`, `Correo`, `Clave`, `Rol`, `Rubro`) VALUES
+INSERT INTO `empleado` (`IdEmpleado`, `IdEmpresaR`, `Nombres`, `Apellidos`, `Telefono`, `Email`, `Password`, `Rol`, `Rubro`) VALUES
 ('TRA006', 'EMP004', 'Erick', 'Rosales', '73100304', 'erick123@gmail.com', '23', 1, 'CEO'),
 ('TRA003', 'EMP002', 'Neivy', 'Acuna', '78965412', 'acuaabigail@yahoo.com', '345', 1, 'secretaria'),
 ('TRA004', 'EMP004', 'Abigail', 'Acuna', '73100304', 'erika123@gmail.com', '67', 1, 'Gerente'),
@@ -205,9 +205,9 @@ CREATE TABLE IF NOT EXISTS `empresar` (
   `Direccion` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `NombreContacto` varchar(25) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Telefono` varchar(8) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
-  `Correo` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Email` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Comision` decimal(2,2) NOT NULL,
-  `Clave` varchar(20) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Password` varchar(20) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Rol` int NOT NULL,
   PRIMARY KEY (`IdEmpresaR`),
   KEY `IdCategoria` (`IdCategeoria`)
@@ -217,7 +217,7 @@ CREATE TABLE IF NOT EXISTS `empresar` (
 -- Dumping data for table `empresar`
 --
 
-INSERT INTO `empresar` (`IdEmpresaR`, `IdCategeoria`, `NombreEmpresa`, `Direccion`, `NombreContacto`, `Telefono`, `Correo`, `Comision`, `Clave`, `Rol`) VALUES
+INSERT INTO `empresar` (`IdEmpresaR`, `IdCategeoria`, `NombreEmpresa`, `Direccion`, `NombreContacto`, `Telefono`, `Email`, `Comision`, `Password`, `Rol`) VALUES
 ('EMP004', 1, 'MAAC', 'vvvv', 'abby', '78451232', 'abby@123.com', '0.50', '', 0),
 ('EMP002', 2, 'RARE beauty', 'EEUU', 'Selena Gomez', '14789632', 'selena@gmail.com', '0.63', '', 0),
 ('EMP001', 2, 'Clínica', 'Colonia Escalón', 'Yo', '78904523', 'io.ortega.tony@gmail.com', '0.80', 'fXlISVW4ZcwUrf9', 2);
@@ -269,6 +269,76 @@ INSERT INTO `roles` (`IdRol`, `NombreRol`) VALUES
 (2, 'AdministradorEmpresa'),
 (3, 'Empleado'),
 (4, 'Clientes');
+
+-- --------------------------------------------------------
+--
+--  
+--
+
+DROP TABLE IF EXISTS `usuarios`;
+CREATE TABLE IF NOT EXISTS `usuarios` (
+  `Rol` int NOT NULL,
+  `Email` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Password` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  PRIMARY KEY (`Rol`),
+  FOREIGN KEY (`Rol`) REFERENCES `roles`(`IdRol`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci;
+
+--
+-- 
+--
+
+INSERT INTO `usuarios` (`Email`, `Password`,`Rol`) VALUES
+('Administrador','123456','1'),
+('AdministradorEmpresa','123456','2'),
+('Empleado','123456','3');
+
+-- --------------------------------------------------------
+--
+--  Guardando y eliminando los datos de empleados
+--
+
+DELIMITER $$
+CREATE TRIGGER empleado_insert_trigger
+AFTER INSERT ON empleado
+FOR EACH ROW
+BEGIN
+  INSERT INTO usuarios (Correo, Clave, Rol)
+  VALUES (NEW.Correo, NEW.Clave, 3); -- Asigna el rol correspondiente para empleados (2)
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER empleado_delete_trigger
+AFTER DELETE ON empleado
+FOR EACH ROW
+BEGIN
+  DELETE FROM usuarios WHERE Correo = OLD.Correo;
+END$$
+DELIMITER ;
+
+--
+-- Guardando y eliminando los datos de empresar
+--
+
+DELIMITER $$
+CREATE TRIGGER empresar_insert_trigger
+AFTER INSERT ON empresar
+FOR EACH ROW
+BEGIN
+  INSERT INTO usuarios (Correo, Clave, Rol)
+  VALUES (NEW.Correo, NEW.Clave, 3); -- Asigna el rol correspondiente para empresas (3)
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER empresar_delete_trigger
+AFTER DELETE ON empresar
+FOR EACH ROW
+BEGIN
+  DELETE FROM usuarios WHERE Correo = OLD.Correo;
+END$$
+DELIMITER ;
 
 -- --------------------------------------------------------
 
