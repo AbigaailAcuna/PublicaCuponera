@@ -277,10 +277,11 @@ INSERT INTO `roles` (`IdRol`, `NombreRol`) VALUES
 
 DROP TABLE IF EXISTS `usuarios`;
 CREATE TABLE IF NOT EXISTS `usuarios` (
+  `Id` int auto_increment,
   `Rol` int NOT NULL,
   `Email` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
-  `Password` varchar(100) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
-  PRIMARY KEY (`Rol`),
+  `Password` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  PRIMARY KEY (`Id`),
   FOREIGN KEY (`Rol`) REFERENCES `roles`(`IdRol`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci;
 
@@ -289,22 +290,21 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 --
 
 INSERT INTO `usuarios` (`Email`, `Password`,`Rol`) VALUES
-('Administrador','123456','1'),
-('AdministradorEmpresa','123456','2'),
-('Empleado','123456','3');
+('Administrador','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','1'),
+('AdministradorEmpresa','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','2'),
+('Empleado','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','3');
 
 -- --------------------------------------------------------
 --
---  Guardando y eliminando los datos de empleados
+-- Guardando y eliminando los datos de empleado
 --
-
 DELIMITER $$
 CREATE TRIGGER empleado_insert_trigger
 AFTER INSERT ON empleado
 FOR EACH ROW
 BEGIN
-  INSERT INTO usuarios (Correo, Clave, Rol)
-  VALUES (NEW.Correo, NEW.Clave, 3); -- Asigna el rol correspondiente para empleados (2)
+  INSERT INTO usuarios (Email, Password, Rol)
+  VALUES (NEW.Email, NEW.Password, 3); -- Asigna el rol correspondiente para empleados (2)
 END$$
 DELIMITER ;
 
@@ -313,7 +313,7 @@ CREATE TRIGGER empleado_delete_trigger
 AFTER DELETE ON empleado
 FOR EACH ROW
 BEGIN
-  DELETE FROM usuarios WHERE Correo = OLD.Correo;
+  DELETE FROM usuarios WHERE Email = OLD.Email;
 END$$
 DELIMITER ;
 
@@ -326,8 +326,8 @@ CREATE TRIGGER empresar_insert_trigger
 AFTER INSERT ON empresar
 FOR EACH ROW
 BEGIN
-  INSERT INTO usuarios (Correo, Clave, Rol)
-  VALUES (NEW.Correo, NEW.Clave, 3); -- Asigna el rol correspondiente para empresas (3)
+  INSERT INTO usuarios (Email, Password, Rol)
+  VALUES (NEW.Email, NEW.Password, 3); -- Asigna el rol correspondiente para empresas (3)
 END$$
 DELIMITER ;
 
@@ -336,7 +336,7 @@ CREATE TRIGGER empresar_delete_trigger
 AFTER DELETE ON empresar
 FOR EACH ROW
 BEGIN
-  DELETE FROM usuarios WHERE Correo = OLD.Correo;
+  DELETE FROM usuarios WHERE Email = OLD.Email;
 END$$
 DELIMITER ;
 
