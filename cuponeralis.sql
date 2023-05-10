@@ -304,7 +304,7 @@ AFTER INSERT ON empleado
 FOR EACH ROW
 BEGIN
   INSERT INTO usuarios (Email, Password, Rol)
-  VALUES (NEW.Email, NEW.Password, 3); -- Asigna el rol correspondiente para empleados (2)
+  VALUES (NEW.Email, NEW.Password, 2); -- Asigna el rol correspondiente para empresas (2)
 END$$
 DELIMITER ;
 
