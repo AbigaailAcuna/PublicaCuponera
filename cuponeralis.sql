@@ -339,6 +339,20 @@ BEGIN
 END$$
 DELIMITER ;
 
+DELIMITER $$
+CREATE TRIGGER usuario_update_password_trigger
+AFTER UPDATE ON usuarios
+FOR EACH ROW
+BEGIN
+  IF NEW.Password <> OLD.Password THEN
+    -- Actualizar en la tabla empleado
+    UPDATE empleado SET Password = NEW.Password WHERE Email = NEW.Email;
+    -- Actualizar en la tabla empresar
+    UPDATE empresar SET Password = NEW.Password WHERE Email = NEW.Email;
+  END IF;
+END$$
+DELIMITER ;
+
 -- --------------------------------------------------------
 
 --
