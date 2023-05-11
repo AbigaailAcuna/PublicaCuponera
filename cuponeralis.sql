@@ -280,6 +280,7 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
   `Rol` int NOT NULL,
   `Email` varchar(50) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
   `Password` varchar(200) CHARACTER SET utf16 COLLATE utf16_spanish_ci NOT NULL,
+  `Password_c` int NOT NULL,
   PRIMARY KEY (`Id`),
   FOREIGN KEY (`Rol`) REFERENCES `roles`(`IdRol`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf16 COLLATE=utf16_spanish_ci;
@@ -288,10 +289,10 @@ CREATE TABLE IF NOT EXISTS `usuarios` (
 -- 
 --
 
-INSERT INTO `usuarios` (`Email`, `Password`,`Rol`) VALUES
-('Administrador','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','1'),
-('AdministradorEmpresa','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','2'),
-('Empleado','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','3');
+INSERT INTO `usuarios` (`Email`, `Password`,`Rol`, `Password_c`) VALUES
+('Administrador','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','1', '1'),
+('AdministradorEmpresa','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','2','0'),
+('Empleado','8d969eef6ecad3c29a3a629280e686cf0c3f5d5a86aff3ca12020c923adc6c92','3','1');
 
 -- --------------------------------------------------------
 --
@@ -302,8 +303,8 @@ CREATE TRIGGER empleado_insert_trigger
 AFTER INSERT ON empleado
 FOR EACH ROW
 BEGIN
-  INSERT INTO usuarios (Email, Password, Rol)
-  VALUES (NEW.Email, NEW.Password, 3); -- Asigna el rol correspondiente para empresas (2)
+  INSERT INTO usuarios (Email, Password, Rol, Password_c)
+  VALUES (NEW.Email, NEW.Password, 3, 0); -- Asigna el rol correspondiente para empleados (2)
 END$$
 DELIMITER ;
 
@@ -325,8 +326,8 @@ CREATE TRIGGER empresar_insert_trigger
 AFTER INSERT ON empresar
 FOR EACH ROW
 BEGIN
-  INSERT INTO usuarios (Email, Password, Rol)
-  VALUES (NEW.Email, NEW.Password, 2); -- Asigna el rol correspondiente para empresas (3)
+  INSERT INTO usuarios (Email, Password, Rol, Password_c)
+  VALUES (NEW.Email, NEW.Password, 2, 0); -- Asigna el rol correspondiente para empresas (2)
 END$$
 DELIMITER ;
 
